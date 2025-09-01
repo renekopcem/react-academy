@@ -1,0 +1,99 @@
+import { useState } from "react";
+import Session1App from "../session-1/session1App.jsx";
+import "./App.css";
+
+function App() {
+  const [currentSession, setCurrentSession] = useState("navigator");
+
+  const sessions = [
+    {
+      id: "session-1",
+      title: "Session 1: React Basics",
+      description: "What is React, Components, JSX, Props",
+      duration: "45 min",
+      component: Session1App
+    }
+    // Future sessions can be added here
+  ];
+
+  const renderSessionNavigator = () => (
+    <div className="session-navigator">
+      <header className="academy-header">
+        <h1>🚀 React Academy</h1>
+        <p>Learn React step by step through hands-on sessions</p>
+      </header>
+
+      <div className="sessions-grid">
+        {sessions.map((session) => (
+          <div key={session.id} className="session-card">
+            <h3>{session.title}</h3>
+            <p>{session.description}</p>
+            <div className="session-meta">
+              <span className="duration">⏱️ {session.duration}</span>
+            </div>
+            <button
+              className="start-session-btn"
+              onClick={() => setCurrentSession(session.id)}
+            >
+              Start Session
+            </button>
+          </div>
+        ))}
+        
+        <div className="session-card coming-soon">
+          <h3>Session 2: State & Events</h3>
+          <p>useState, Event Handling, Interactive Components</p>
+          <div className="session-meta">
+            <span className="duration">⏱️ 45 min</span>
+          </div>
+          <button className="coming-soon-btn" disabled>
+            Coming Soon
+          </button>
+        </div>
+        
+        <div className="session-card coming-soon">
+          <h3>Session 3: Lists & Keys</h3>
+          <p>Rendering Lists, Keys, Conditional Rendering</p>
+          <div className="session-meta">
+            <span className="duration">⏱️ 45 min</span>
+          </div>
+          <button className="coming-soon-btn" disabled>
+            Coming Soon
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderCurrentSession = () => {
+    const session = sessions.find(s => s.id === currentSession);
+    if (!session) return null;
+    
+    const SessionComponent = session.component;
+    return (
+      <div className="session-container">
+        <nav className="session-nav">
+          <button 
+            className="back-btn"
+            onClick={() => setCurrentSession("navigator")}
+          >
+            ← Back to Sessions
+          </button>
+          <h2>{session.title}</h2>
+        </nav>
+        <SessionComponent />
+      </div>
+    );
+  };
+
+  return (
+    <div className="App">
+      {currentSession === "navigator" 
+        ? renderSessionNavigator() 
+        : renderCurrentSession()
+      }
+    </div>
+  );
+}
+
+export default App;
