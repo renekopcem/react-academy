@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Session1App from "../session-1/session1App.jsx";
+import Session2App from "../session-2/session2App.jsx";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,13 @@ function App() {
       description: "What is React, Components, JSX, Props",
       duration: "45 min",
       component: Session1App
+    },
+    {
+      id: "session-2",
+      title: "Session 2: State & Events",
+      description: "useState, Event Handling, Interactive Components",
+      duration: "45 min",
+      component: Session2App
     }
     // Future sessions can be added here
   ];
@@ -39,17 +47,6 @@ function App() {
             </button>
           </div>
         ))}
-        
-        <div className="session-card coming-soon">
-          <h3>Session 2: State & Events</h3>
-          <p>useState, Event Handling, Interactive Components</p>
-          <div className="session-meta">
-            <span className="duration">⏱️ 45 min</span>
-          </div>
-          <button className="coming-soon-btn" disabled>
-            Coming Soon
-          </button>
-        </div>
         
         <div className="session-card coming-soon">
           <h3>Session 3: Lists & Keys</h3>

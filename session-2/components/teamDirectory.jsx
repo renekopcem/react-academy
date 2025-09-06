@@ -1,0 +1,40 @@
+import TeamMember from '../../session-1/components/teamMember.jsx';
+
+// Enhanced TeamDirectory component with view toggle
+function TeamDirectory({ teamMembers, isGridView, onViewToggle }) {
+  return (
+    <section className="team-directory">
+      <div className="team-header">
+        <div className="team-header-content">
+          <h2>👥 Meet Our Team</h2>
+          <p className="team-description">
+            Each team member below is a React component receiving data through props
+          </p>
+        </div>
+        
+        <div className="view-controls">
+          <button 
+            className={`view-toggle-btn ${isGridView ? 'active' : ''}`}
+            onClick={onViewToggle}
+          >
+            {isGridView ? '📋 Switch to List View' : '⊞ Switch to Grid View'}
+          </button>
+        </div>
+      </div>
+      
+      <div className="team-grid">
+        {teamMembers.map((member, index) => (
+          <TeamMember
+            key={index}
+            name={member.name}
+            role={member.role}
+            email={member.email}
+            avatar={member.avatar}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default TeamDirectory;
