@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Session1App from "../session-1/session1App.jsx";
 import Session2App from "../session-2/session2App.jsx";
+import Session3App from "../session-3/session3App.jsx";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,13 @@ function App() {
       description: "useState, Event Handling, Interactive Components",
       duration: "45 min",
       component: Session2App
+    },
+    {
+      id: "session-3",
+      title: "Session 3: useEffect & Lifecycle",
+      description: "useEffect Hook, Component Lifecycle, Cleanup Functions",
+      duration: "45 min",
+      component: Session3App
     }
     // Future sessions can be added here
   ];
@@ -49,7 +57,7 @@ function App() {
         ))}
         
         <div className="session-card coming-soon">
-          <h3>Session 3: Lists & Keys</h3>
+          <h3>Session 4: Lists & Keys</h3>
           <p>Rendering Lists, Keys, Conditional Rendering</p>
           <div className="session-meta">
             <span className="duration">⏱️ 45 min</span>
