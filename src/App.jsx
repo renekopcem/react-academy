@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Session1App from "../session-1-final/session1App.jsx";
+import Session1App from "../session-1/session1App.jsx";
 import "./App.css";
 
 function App() {
