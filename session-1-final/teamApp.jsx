@@ -1,12 +1,40 @@
-import '../session-1-final/styles.css';
+import TeamDirectory from './components/teamDirectory.jsx';
+import './styles.css';
 
+// TeamApp - The hands-on application students will build
 function TeamApp() {
+  // Sample team data to demonstrate props
+  const teamMembers = [
+    {
+      name: "Sarah Chen",
+      role: "Frontend Developer",
+      email: "sarah@company.com"
+    },
+    {
+      name: "Mike Johnson",
+      role: "Backend Developer", 
+      email: "mike@company.com"
+    },
+    {
+      name: "Lisa Rodriguez",
+      role: "UI/UX Designer",
+      email: "lisa@company.com"
+    },
+    {
+      name: "David Kim",
+      role: "Project Manager",
+      email: "david@company.com"
+    }
+  ];
+
   return (
     <div className="team-app">
       <header className="app-header">
         <h1>Team Directory</h1>
         <p>Building our first React application with components and props</p>
       </header>
+      
+      <TeamDirectory teamMembers={teamMembers} />
       
       <footer className="app-footer">
         <div className="practice-notes">

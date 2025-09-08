@@ -1,8 +1,7 @@
-import TeamMember from '../../session-1/components/teamMember.jsx';
-import TeamSearch from './teamSearch.jsx';
+import TeamMember from '../../session-1-final/components/teamMember.jsx';
 
-// Enhanced TeamDirectory component with search and view toggle
-function TeamDirectory({ teamMembers, isGridView, onViewToggle, searchTerm, onSearch, resultsCount, totalCount }) {
+// Enhanced TeamDirectory component with view toggle
+function TeamDirectory({ teamMembers, isGridView, onViewToggle }) {
   return (
     <section className="team-directory">
       <div className="team-header">
@@ -11,16 +10,6 @@ function TeamDirectory({ teamMembers, isGridView, onViewToggle, searchTerm, onSe
           <p className="team-description">
             Each team member below is a React component receiving data through props
           </p>
-        </div>
-      </div>
-      
-      <div className="team-controls">
-        <div className="search-container">
-          <TeamSearch 
-            onSearch={onSearch}
-            resultsCount={resultsCount}
-            totalCount={totalCount}
-          />
         </div>
         
         <div className="view-controls">
