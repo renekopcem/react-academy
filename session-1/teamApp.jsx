@@ -1,4 +1,4 @@
-import '../session-1-final/styles.css';
+import "../session-1-final/styles.css";
 
 function TeamApp() {
   return (
@@ -7,7 +7,7 @@ function TeamApp() {
         <h1>Team Directory</h1>
         <p>Building our first React application with components and props</p>
       </header>
-      
+
       <footer className="app-footer">
         <div className="practice-notes">
           <h3>🛠️ Try These Exercises:</h3>

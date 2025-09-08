@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Session1App from "../session-1/session1App.jsx";
-import Session2App from "../session-2-final/session2App.jsx";
-import Session3App from "../session-3-final/session3App.jsx";
+import Session1App from "../session-1-final/session1App.jsx";
 import "./App.css";
 
 function App() {
@@ -13,23 +11,8 @@ function App() {
       title: "Session 1: React Basics",
       description: "What is React, Components, JSX, Props",
       duration: "45 min",
-      component: Session1App
+      component: Session1App,
     },
-    {
-      id: "session-2",
-      title: "Session 2: State & Events",
-      description: "useState, Event Handling, Interactive Components",
-      duration: "45 min",
-      component: Session2App
-    },
-    {
-      id: "session-3",
-      title: "Session 3: useEffect & Lifecycle",
-      description: "useEffect Hook, Component Lifecycle, Cleanup Functions",
-      duration: "45 min",
-      component: Session3App
-    }
-    // Future sessions can be added here
   ];
 
   const renderSessionNavigator = () => (
@@ -55,30 +38,19 @@ function App() {
             </button>
           </div>
         ))}
-        
-        <div className="session-card coming-soon">
-          <h3>Session 4: Lists & Keys</h3>
-          <p>Rendering Lists, Keys, Conditional Rendering</p>
-          <div className="session-meta">
-            <span className="duration">⏱️ 45 min</span>
-          </div>
-          <button className="coming-soon-btn" disabled>
-            Coming Soon
-          </button>
-        </div>
       </div>
     </div>
   );
 
   const renderCurrentSession = () => {
-    const session = sessions.find(s => s.id === currentSession);
+    const session = sessions.find((s) => s.id === currentSession);
     if (!session) return null;
-    
+
     const SessionComponent = session.component;
     return (
       <div className="session-container">
         <nav className="session-nav">
-          <button 
+          <button
             className="back-btn"
             onClick={() => setCurrentSession("navigator")}
           >
@@ -93,10 +65,9 @@ function App() {
 
   return (
     <div className="App">
-      {currentSession === "navigator" 
-        ? renderSessionNavigator() 
-        : renderCurrentSession()
-      }
+      {currentSession === "navigator"
+        ? renderSessionNavigator()
+        : renderCurrentSession()}
     </div>
   );
 }
