@@ -1,14 +1,25 @@
 # React Academy
 
+## 🚀 Quick Start
+
 **Try it instantly in CodeSandbox:**
 [Open in CodeSandbox](https://codesandbox.io/p/github/renekopcem/react-academy/main)
+
+**Or install locally:**
+```bash
+git clone https://github.com/renekopcem/react-academy.git
+cd react-academy
+yarn install
+yarn dev
+```
 
 ## 📁 Folder Structure
 
 ```
-src/
-├── App.jsx                 # Main app with session navigator
-├── styles.css              # Global styles
+react-academy/
+├── src/
+│   ├── App.jsx             # Main app with session navigator
+│   └── styles.css          # Global styles
 ├── session-1/              # Session 1: React Basics
 │   ├── session1App.jsx     # Theory mode with learning objectives
 │   ├── teamApp.jsx         # Practice mode with Team Directory app
