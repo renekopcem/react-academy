@@ -2,6 +2,7 @@ import { useState } from "react";
 import Session1App from "../session-1/session1App.jsx";
 import Session2App from "../session-2/session2App.jsx";
 import Session3App from "../session-3/session3App.jsx";
+import Session4App from "../session-4/session4App.jsx";
 import "./App.css";
 
 function App() {
@@ -28,6 +29,13 @@ function App() {
       description: "useEffect Hook, Component Lifecycle, Cleanup Functions",
       duration: "45 min",
       component: Session3App
+    },
+    {
+      id: "session-4",
+      title: "Session 4: Context API",
+      description: "Context API, Provider Pattern, useContext Hook, Eliminating Prop Drilling",
+      duration: "45 min",
+      component: Session4App
     }
   ];
 
