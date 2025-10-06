@@ -3,6 +3,7 @@ import Session1App from "../session-1/session1App.jsx";
 import Session2App from "../session-2/session2App.jsx";
 import Session3App from "../session-3/session3App.jsx";
 import Session4App from "../session-4/session4App.jsx";
+import Session5App from "../session-5/session5App.jsx";
 import "./App.css";
 
 function App() {
@@ -36,6 +37,13 @@ function App() {
       description: "Context API, Provider Pattern, useContext Hook, Eliminating Prop Drilling",
       duration: "45 min",
       component: Session4App
+    },
+    {
+      id: "session-5",
+      title: "Session 5: useReducer with Context",
+      description: "useReducer Hook, Reducer Pattern, Action Dispatching, Scalable State Management",
+      duration: "45 min",
+      component: Session5App
     }
   ];
 

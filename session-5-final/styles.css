@@ -1,0 +1,1105 @@
+/* Session 5 Styles - useReducer with Context */
+/* All styles scoped to .session5-app to avoid conflicts with other sessions */
+
+/* ===== THEORY MODE ===== */
+
+.session5-app {
+  min-height: 100vh;
+  background: #f8fafc;
+  color: #1e293b;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Session Header */
+.session5-app .session5-header {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 10px 40px rgba(240, 147, 251, 0.3);
+}
+
+.session5-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.session5-header .header-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.session5-header .header-content h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.session5-header .session-subtitle {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.session5-header .session-badge {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* Intro Section */
+.session5-app .session5-intro {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  padding: 3rem 2rem;
+  margin: 0;
+}
+
+.session5-intro h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.session5-intro .intro-text {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 0 auto 3rem;
+  max-width: 800px;
+  color: #2d3748;
+}
+
+/* Learning Objectives */
+.session5-app .learning-objectives {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.session5-app .objective-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.objective-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.objective-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  border-radius: 12px;
+}
+
+.objective-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.objective-content p {
+  margin: 0;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+/* Theory Section */
+.session5-app .session5-theory {
+  background: #f8fafc;
+  padding: 3rem 2rem;
+}
+
+.theory-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.theory-content h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Key Concepts as List */
+.session5-app .concept-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.session5-app .concept-block {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border-left: 4px solid #f093fb;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.concept-block h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.concept-block p {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.concept-block p:last-child {
+  margin-bottom: 0;
+}
+
+.concept-block strong {
+  color: #2d3748;
+  font-weight: 700;
+}
+
+/* Reducer Flow Diagram */
+.session5-app .reducer-flow-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 12px;
+  flex-wrap: wrap;
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flow-box {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  min-width: 150px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0;
+  transition: transform 0.2s ease;
+}
+
+.flow-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.flow-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  color: #64748b;
+}
+
+.flow-box code {
+  background: #f8fafc;
+  color: #1e293b;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 0.8rem;
+  display: block;
+  font-weight: 600;
+}
+
+.state-box {
+  border-color: #3b82f6;
+  border-width: 3px;
+}
+
+.state-box .flow-label {
+  color: #3b82f6;
+}
+
+.action-box {
+  border-color: #8b5cf6;
+  border-width: 3px;
+}
+
+.action-box .flow-label {
+  color: #8b5cf6;
+}
+
+.reducer-box {
+  border-color: #f59e0b;
+  border-width: 3px;
+}
+
+.reducer-box .flow-label {
+  color: #f59e0b;
+}
+
+.new-state-box {
+  border-color: #10b981;
+  border-width: 3px;
+}
+
+.new-state-box .flow-label {
+  color: #10b981;
+}
+
+.flow-arrow {
+  font-size: 2rem;
+  color: #94a3b8;
+  font-weight: bold;
+  margin: 0 0.5rem;
+}
+
+/* Code Preview */
+.session5-app .code-preview {
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.code-preview code {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+/* Syntax Highlighting */
+.code-preview .keyword {
+  color: #c792ea;
+  font-weight: 600;
+}
+
+.code-preview .function {
+  color: #82aaff;
+  font-weight: 500;
+}
+
+.code-preview .string {
+  color: #c3e88d;
+}
+
+.code-preview .comment {
+  color: #697098;
+  font-style: italic;
+}
+
+.code-preview .property {
+  color: #ffcb6b;
+}
+
+.code-preview .boolean {
+  color: #ff5370;
+  font-weight: 600;
+}
+
+/* Comparison Grid */
+.session5-app .comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.comparison-before,
+.comparison-after {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid #e2e8f0;
+}
+
+.comparison-before h4,
+.comparison-after h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #2d3748;
+}
+
+.comparison-before {
+  border-left: 4px solid #fbbf24;
+}
+
+.comparison-after {
+  border-left: 4px solid #34d399;
+}
+
+/* Practice CTA */
+.session5-app .practice-cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(240, 147, 251, 0.3);
+}
+
+.practice-cta h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+.practice-cta p {
+  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.start-practice-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.start-practice-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
+
+/* ===== PRACTICE MODE ===== */
+
+.session5-app .practice-mode {
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+.session5-app .practice-nav {
+  background: white;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.session5-app .back-to-theory-btn {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(240, 147, 251, 0.3);
+}
+
+.back-to-theory-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
+}
+
+.practice-nav h2 {
+  margin: 0;
+  color: #2d3748;
+}
+
+/* Session 5 Practice Layout */
+.session5-app .session5-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.session5-app .sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Selected Member Panel */
+.session5-app .selected-member-panel,
+.session5-app .selected-member-empty {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.selected-member-empty {
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  padding: 3rem 1.5rem;
+}
+
+.session5-app .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.panel-header h3 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.session5-app .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.session5-app .member-avatar-large {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.session5-app .avatar-placeholder-large {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.session5-app .member-details h4 {
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.session5-app .member-details p {
+  margin: 0 0 0.5rem 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.session5-app .member-details strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+.session5-app .reducer-note {
+  background: rgba(240, 147, 251, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-left: 3px solid #f093fb;
+}
+
+.reducer-note small {
+  color: #831843;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* Action Log */
+.session5-app .action-log {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.action-log h3 {
+  margin: 0 0 0.5rem 0;
+  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.log-description {
+  margin: 0 0 1rem 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.log-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.log-entry {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  border-left: 3px solid #f093fb;
+  font-size: 0.85rem;
+}
+
+.log-time {
+  color: #64748b;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.log-type {
+  color: #1e293b;
+  font-weight: 600;
+  font-family: 'Monaco', 'Consolas', monospace;
+  margin-bottom: 0.25rem;
+}
+
+.log-payload {
+  color: #475569;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.log-info {
+  padding-top: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.log-info small {
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+/* Main Content */
+.session5-app .main-content {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+/* Directory Header */
+.session5-app .directory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.directory-header h2 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.session5-app .reset-filters-btn {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(240, 147, 251, 0.3);
+}
+
+.reset-filters-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
+}
+
+/* Team Controls */
+.session5-app .team-controls {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Search Section */
+.session5-app .search-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.session5-app .team-search {
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.session5-app .search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.session5-app .search-icon {
+  position: absolute;
+  left: 16px;
+  font-size: 1.2rem;
+  color: #9ca3af;
+  z-index: 1;
+}
+
+.session5-app .search-input {
+  width: 100%;
+  padding: 12px 16px 12px 50px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background: white;
+  color: #1e293b;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #f093fb;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
+}
+
+.session5-app .search-results-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.results-count strong {
+  color: #f093fb;
+}
+
+/* View Toggle */
+.session5-app .view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.session5-app .view-toggle-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(240, 147, 251, 0.2);
+}
+
+.view-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+}
+
+/* Team Grid */
+.session5-app .team-container.grid-view .team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.session5-app .team-container.list-view .team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Team Member Cards */
+.session5-app .team-member {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.team-member:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #f093fb;
+}
+
+.team-member.selected {
+  border-color: #f093fb;
+  background: linear-gradient(135deg, #fef3ff, #ffe4f9);
+  box-shadow: 0 4px 20px rgba(240, 147, 251, 0.3);
+}
+
+.session5-app .member-avatar {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.session5-app .avatar-placeholder {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.session5-app .member-info {
+  margin-bottom: 1rem;
+}
+
+.session5-app .member-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.session5-app .member-info .role {
+  margin: 0 0 0.25rem 0;
+  color: #f093fb;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.session5-app .member-info .department {
+  margin: 0 0 0.25rem 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.session5-app .member-info .email {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.session5-app .selected-indicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f093fb;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(240, 147, 251, 0.4);
+}
+
+/* List View Specific */
+.team-container.list-view .team-member {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+}
+
+.team-container.list-view .member-avatar {
+  margin-bottom: 0;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.team-container.list-view .avatar-placeholder {
+  font-size: 1.2rem;
+}
+
+.team-container.list-view .member-info {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.team-container.list-view .member-info h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.team-container.list-view .member-info .role,
+.team-container.list-view .member-info .department,
+.team-container.list-view .member-info .email {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Reducer Demo */
+.session5-app .reducer-demo {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.session5-app .demo-note {
+  background: linear-gradient(135deg, #fef3ff, #ffe4f9);
+  border: 1px solid #f9a8d4;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.demo-note h4 {
+  margin: 0 0 1rem 0;
+  color: #831843;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.demo-note p {
+  margin: 0 0 1rem 0;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.demo-note ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.demo-note li {
+  color: #374151;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.demo-note code {
+  background: rgba(131, 24, 67, 0.1);
+  color: #831843;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.session5-app .session5-footer {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+}
+
+.session5-app .reducer-explanation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.session5-app .reducer-info {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #f093fb;
+}
+
+.reducer-info h4 {
+  margin: 0 0 0.75rem 0;
+  color: #1e293b;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.reducer-info code {
+  background: #e0e7ff;
+  color: #1e293b;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  word-break: break-all;
+}
+
+.reducer-info p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.session5-app .session5-highlight {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+}
+
+.session5-highlight h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+}
+
+.session5-highlight p {
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .session5-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reducer-explanation {
+    grid-template-columns: 1fr;
+  }
+
+  .team-controls {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .session5-header .session-badge {
+    position: static;
+    margin-top: 1rem;
+  }
+
+  .learning-objectives {
+    grid-template-columns: 1fr;
+  }
+}
