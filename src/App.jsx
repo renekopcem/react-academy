@@ -4,6 +4,7 @@ import Session2App from "../session-2/session2App.jsx";
 import Session3App from "../session-3/session3App.jsx";
 import Session4App from "../session-4/session4App.jsx";
 import Session5App from "../session-5/session5App.jsx";
+import Session6App from "../session-6/session6App.jsx";
 import "./App.css";
 
 function App() {
@@ -44,6 +45,13 @@ function App() {
       description: "useReducer Hook, Reducer Pattern, Action Dispatching, Scalable State Management",
       duration: "45 min",
       component: Session5App
+    },
+    {
+      id: "session-6",
+      title: "Session 6: Data Fetching with React Query",
+      description: "React Query (TanStack Query), useQuery, useMutation, Cache Management, Server State",
+      duration: "45 min",
+      component: Session6App
     }
   ];
 
