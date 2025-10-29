@@ -11,7 +11,7 @@ function TeamAppContent() {
     <div className="session6-app team-app session6-practice">
       <header className="app-header">
         <h1>Team Directory</h1>
-        <p>Now powered by React Query - watch queries and mutations in action!</p>
+        <p>TanStack Router + React Query Integration</p>
       </header>
 
       <div className="app-layout">
@@ -23,37 +23,45 @@ function TeamAppContent() {
 
       <footer className="app-footer session6-footer">
         <div className="practice-notes">
-          <h3>🌐 React Query in Action:</h3>
+          <h3>🎯 Session 7 Practice: TanStack Router</h3>
+
           <div className="query-explanation">
             <div className="query-info">
-              <h4>📡 useQuery for Fetching:</h4>
-              <code>const &#123; data, isLoading, error &#125; = useQuery(...);</code>
-              <p>Automatic caching, background refetching, and loading states!</p>
+              <h4>🗺️ Router Setup:</h4>
+              <code>createRouter, createRoute, RouterProvider</code>
+              <p>Create multiple routes with navigation: /, /members, /members/:id</p>
             </div>
             <div className="query-info">
-              <h4>✏️ useMutation for Updates:</h4>
-              <code>const mutation = useMutation(...);</code>
-              <p>Handle POST, PUT, DELETE with automatic UI updates</p>
+              <h4>🔗 Navigation & Params:</h4>
+              <code>Link, useParams(), useNavigate()</code>
+              <p>Type-safe routing with parameters and programmatic navigation</p>
             </div>
             <div className="query-info">
-              <h4>⚡ Cache Invalidation:</h4>
-              <code>queryClient.invalidateQueries(['team-members']);</code>
-              <p>Automatically refetch after mutations to keep UI in sync!</p>
+              <h4>⚡ React Query + Suspense:</h4>
+              <code>useSuspenseQuery + Suspense boundaries</code>
+              <p>Automatic loading states and data prefetching on hover</p>
             </div>
           </div>
 
           <ul className="exercise-list">
-            <li>🛠️ Click the React Query DevTools icon (bottom-right) to inspect queries and mutations!</li>
-            <li>➕ Add a new team member - see the mutation in action</li>
-            <li>🗑️ Delete a team member - watch the UI update automatically</li>
-            <li>🔄 Close and reopen the practice mode - notice instant data from cache!</li>
-            <li>🌐 Open Browser DevTools Network tab - see real fetch requests</li>
-            <li>📊 The data persists in localStorage across page refreshes!</li>
+            <li>🗺️ Navigate between Home, Members list, and Member detail pages</li>
+            <li>🎨 Hover over member cards - see prefetching in action (check DevTools)</li>
+            <li>🔙 Use browser back/forward - notice instant navigation from cache</li>
+            <li>🔍 Open React Query DevTools to watch cache updates</li>
+            <li>🛠️ Open TanStack Router DevTools to inspect route tree and params</li>
+            <li>⚡ Navigate to a member, go back, then forward - zero loading time!</li>
           </ul>
 
           <div className="concept-highlight session6-highlight">
-            <h4>🧠 Key Learning:</h4>
-            <p>Compare this to manual data fetching! React Query handles caching, loading states, error handling, and refetching automatically. No more useEffect spaghetti code! This is the modern way to handle server state in React applications.</p>
+            <h4>🧠 Key Learning: Modern Router + Data Fetching</h4>
+            <p><strong>TanStack Router Pattern:</strong> Set up routes with <code>createRoute()</code>, use <code>Link</code> components
+            for navigation, and leverage <code>useParams()</code> for dynamic route parameters. Combine with <code>useSuspenseQuery</code>
+            to fetch data inside route components - Suspense boundaries handle loading states automatically.</p>
+            <p className="highlight-subtext">
+              ⚡ <strong>Performance:</strong> Prefetch queries on hover using <code>queryClient.prefetchQuery()</code>.
+              React Query's cache ensures instant navigation when moving back/forward. The router provides the structure,
+              React Query handles the data - together they create a seamless, fast user experience!
+            </p>
           </div>
         </div>
       </footer>

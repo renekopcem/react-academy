@@ -5,6 +5,7 @@ import Session3App from "../session-3/session3App.jsx";
 import Session4App from "../session-4/session4App.jsx";
 import Session5App from "../session-5/session5App.jsx";
 import Session6App from "../session-6/session6App.jsx";
+import Session7App from "../session-7/session7App.jsx";
 import "./App.css";
 
 function App() {
@@ -52,6 +53,13 @@ function App() {
       description: "React Query (TanStack Query), useQuery, useMutation, Cache Management, Server State",
       duration: "45 min",
       component: Session6App
+    },
+    {
+      id: "session-7",
+      title: "Session 7: Routing in React",
+      description: "TanStack Router, React Router Comparison, Nested Routes, Data Preloading",
+      duration: "45 min",
+      component: Session7App
     }
   ];
 
