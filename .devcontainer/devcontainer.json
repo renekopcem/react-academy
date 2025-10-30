@@ -1,0 +1,4 @@
+{
+  "name": "React Academy",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20"
+}
