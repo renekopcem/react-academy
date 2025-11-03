@@ -4,7 +4,7 @@ import {
   getPerformanceData,
   savePerformanceData,
   getNextPerformanceId,
-  initializePerformanceData
+  initializePerformanceData,
 } from './largeData.js';
 
 // Initialize data on first load
@@ -52,7 +52,7 @@ const originalEndpoints = [
     const memberWithId = {
       ...newMember,
       id: getNextId(members),
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     if (!memberWithId.avatar) {
@@ -87,7 +87,7 @@ const originalEndpoints = [
     const updatedMember = {
       ...members[memberIndex],
       ...updates,
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     members[memberIndex] = updatedMember;
@@ -168,7 +168,7 @@ const performanceEndpoints = [
       skills: newMember.skills || [],
       projects: newMember.projects || [],
       salary: newMember.salary || 75000,
-      experience: newMember.experience || 0
+      experience: newMember.experience || 0,
     };
 
     if (!memberWithId.avatar) {

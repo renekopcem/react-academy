@@ -5,7 +5,6 @@ import {
   Link,
   Outlet,
   useParams,
-  useNavigate
 } from '@tanstack/react-router';
 
 // Import session components
@@ -24,72 +23,84 @@ import Session7BaseTeamApp from '../session-7/teamApp.jsx';
 // Session metadata
 export const sessions = [
   {
-    id: "1",
-    title: "Session 1: React Basics",
-    description: "What is React, Components, JSX, Props",
-    duration: "45 min",
+    id: '1',
+    title: 'Session 1: React Basics',
+    description: 'What is React, Components, JSX, Props',
+    duration: '45 min',
     component: Session1App,
   },
   {
-    id: "2",
-    title: "Session 2: State & Events",
-    description: "useState, Event Handling, Interactive Components",
-    duration: "45 min",
+    id: '2',
+    title: 'Session 2: State & Events',
+    description: 'useState, Event Handling, Interactive Components',
+    duration: '45 min',
     component: Session2App,
   },
   {
-    id: "3",
-    title: "Session 3: useEffect & Lifecycle",
-    description: "useEffect Hook, Component Lifecycle, Cleanup Functions",
-    duration: "45 min",
-    component: Session3App
+    id: '3',
+    title: 'Session 3: useEffect & Lifecycle',
+    description: 'useEffect Hook, Component Lifecycle, Cleanup Functions',
+    duration: '45 min',
+    component: Session3App,
   },
   {
-    id: "4",
-    title: "Session 4: Context API",
-    description: "Context API, Provider Pattern, useContext Hook, Eliminating Prop Drilling",
-    duration: "45 min",
-    component: Session4App
+    id: '4',
+    title: 'Session 4: Context API',
+    description:
+      'Context API, Provider Pattern, useContext Hook, Eliminating Prop Drilling',
+    duration: '45 min',
+    component: Session4App,
   },
   {
-    id: "5",
-    title: "Session 5: useReducer with Context",
-    description: "useReducer Hook, Reducer Pattern, Action Dispatching, Scalable State Management",
-    duration: "45 min",
-    component: Session5App
+    id: '5',
+    title: 'Session 5: useReducer with Context',
+    description:
+      'useReducer Hook, Reducer Pattern, Action Dispatching, Scalable State Management',
+    duration: '45 min',
+    component: Session5App,
   },
   {
-    id: "6",
-    title: "Session 6: Data Fetching with React Query",
-    description: "React Query (TanStack Query), useQuery, useMutation, Cache Management, Server State",
-    duration: "45 min",
-    component: Session6App
+    id: '6',
+    title: 'Session 6: Data Fetching with React Query',
+    description:
+      'React Query (TanStack Query), useQuery, useMutation, Cache Management, Server State',
+    duration: '45 min',
+    component: Session6App,
   },
   {
-    id: "7",
-    title: "Session 7: Routing in React",
-    description: "TanStack Router, React Router Comparison, Nested Routes, Data Preloading",
-    duration: "45 min",
-    component: Session7App
+    id: '7',
+    title: 'Session 7: Routing in React',
+    description:
+      'TanStack Router, React Router Comparison, Nested Routes, Data Preloading',
+    duration: '45 min',
+    component: Session7App,
   },
   {
-    id: "8",
-    title: "Session 8: Performance Optimization",
-    description: "useMemo, React.memo, useCallback, Code Splitting, Lazy Loading",
-    duration: "45 min",
-    component: Session8App
-  }
+    id: '8',
+    title: 'Session 8: Performance Optimization',
+    description:
+      'useMemo, React.memo, useCallback, Code Splitting, Lazy Loading',
+    duration: '45 min',
+    component: Session8App,
+  },
 ];
 
 // NotFound component
 const NotFound = () => {
   return (
     <div className="session-container">
-      <div className="error-message" style={{ textAlign: 'center', padding: '4rem' }}>
+      <div
+        className="error-message"
+        style={{ textAlign: 'center', padding: '4rem' }}
+      >
         <h1 style={{ fontSize: '4rem', margin: '0' }}>404</h1>
         <h2>Page Not Found</h2>
-        <p>The page you're looking for doesn't exist.</p>
-        <Link to="/" className="btn-primary" style={{ marginTop: '2rem', display: 'inline-block' }}>
+        <p>The page you&apos;re looking for doesn&apos;t exist.</p>
+        <Link
+          to="/"
+          className="btn-primary"
+          style={{ marginTop: '2rem', display: 'inline-block' }}
+        >
           ← Back to Sessions
         </Link>
       </div>
@@ -116,7 +127,7 @@ const SessionNavigator = () => {
       </header>
 
       <div className="sessions-grid">
-        {sessions.map((session) => (
+        {sessions.map(session => (
           <div key={session.id} className="session-card">
             <h3>{session.title}</h3>
             <p>{session.description}</p>
@@ -140,14 +151,16 @@ const SessionNavigator = () => {
 // Session Layout Component (wraps theory/practice routes)
 const SessionLayout = () => {
   const { id } = useParams({ strict: false });
-  const session = sessions.find((s) => s.id === id);
+  const session = sessions.find(s => s.id === id);
 
   if (!session) {
     return (
       <div className="session-container">
         <div className="error-message">
           <h2>Session not found</h2>
-          <Link to="/" className="btn-primary">Back to Sessions</Link>
+          <Link to="/" className="btn-primary">
+            Back to Sessions
+          </Link>
         </div>
       </div>
     );
@@ -169,7 +182,7 @@ const SessionLayout = () => {
 // Theory Route Component
 const TheoryRoute = () => {
   const { id } = useParams({ strict: false });
-  const session = sessions.find((s) => s.id === id);
+  const session = sessions.find(s => s.id === id);
 
   if (!session) return null;
 
@@ -180,7 +193,7 @@ const TheoryRoute = () => {
 // Practice Route Component
 const PracticeRoute = () => {
   const { id } = useParams({ strict: false });
-  const session = sessions.find((s) => s.id === id);
+  const session = sessions.find(s => s.id === id);
 
   if (!session) return null;
 

@@ -5,8 +5,38 @@ export const PERFORMANCE_STORAGE_KEY = 'react-academy-performance-members';
 
 // Generate large dataset for performance testing
 export function generateLargeDataset(count = 1000) {
-  const departments = ['Engineering', 'Design', 'Marketing', 'Sales', 'HR', 'Finance', 'Operations'];
-  const skills = ['JavaScript', 'React', 'TypeScript', 'Node.js', 'Python', 'Java', 'C++', 'Go', 'Rust', 'Swift', 'Kotlin', 'SQL', 'MongoDB', 'AWS', 'Docker', 'Kubernetes', 'Git', 'Figma', 'Photoshop', 'UI Design', 'UX Research'];
+  const departments = [
+    'Engineering',
+    'Design',
+    'Marketing',
+    'Sales',
+    'HR',
+    'Finance',
+    'Operations',
+  ];
+  const skills = [
+    'JavaScript',
+    'React',
+    'TypeScript',
+    'Node.js',
+    'Python',
+    'Java',
+    'C++',
+    'Go',
+    'Rust',
+    'Swift',
+    'Kotlin',
+    'SQL',
+    'MongoDB',
+    'AWS',
+    'Docker',
+    'Kubernetes',
+    'Git',
+    'Figma',
+    'Photoshop',
+    'UI Design',
+    'UX Research',
+  ];
 
   return Array.from({ length: count }, (_, i) => {
     const firstName = faker.person.firstName();
@@ -26,13 +56,20 @@ export function generateLargeDataset(count = 1000) {
       location: `${faker.location.city()}, ${faker.location.state()}`,
       bio: faker.lorem.paragraph(),
       skills: faker.helpers.arrayElements(skills, { min: 2, max: 6 }),
-      projects: Array.from({ length: faker.number.int({ min: 1, max: 5 }) }, () => ({
-        name: faker.company.catchPhrase(),
-        description: faker.lorem.sentence(),
-        status: faker.helpers.arrayElement(['Active', 'Completed', 'On Hold'])
-      })),
+      projects: Array.from(
+        { length: faker.number.int({ min: 1, max: 5 }) },
+        () => ({
+          name: faker.company.catchPhrase(),
+          description: faker.lorem.sentence(),
+          status: faker.helpers.arrayElement([
+            'Active',
+            'Completed',
+            'On Hold',
+          ]),
+        })
+      ),
       salary: faker.number.int({ min: 50000, max: 200000 }),
-      experience: faker.number.int({ min: 0, max: 20 })
+      experience: faker.number.int({ min: 0, max: 20 }),
     };
   });
 }

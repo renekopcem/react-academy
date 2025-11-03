@@ -14,9 +14,11 @@ This is a client-side mock API powered by **MSW (Mock Service Worker)** for Reac
 ## Available Endpoint Groups
 
 ### 1. Original Endpoints (Sessions 6-7)
+
 Small dataset with 6 team members. Uses localStorage key: `'react-academy-team-members'`
 
 ### 2. Performance Endpoints (Session 8)
+
 Large dataset with 1000 team members for performance testing. Uses localStorage key: `'react-academy-performance-members'`
 
 ---
@@ -24,9 +26,11 @@ Large dataset with 1000 team members for performance testing. Uses localStorage 
 ## Original Endpoints (Sessions 6-7)
 
 ### GET /api/team-members
+
 Fetch all team members (6 members).
 
 **Example:**
+
 ```js
 const response = await fetch('/api/team-members');
 const members = await response.json();
@@ -34,6 +38,7 @@ console.log(members); // Array of 6 team members
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -51,9 +56,11 @@ console.log(members); // Array of 6 team members
 ---
 
 ### GET /api/team-members/:id
+
 Fetch a single team member by ID.
 
 **Example:**
+
 ```js
 const response = await fetch('/api/team-members/1');
 const member = await response.json();
@@ -62,9 +69,11 @@ const member = await response.json();
 ---
 
 ### POST /api/team-members
+
 Add a new team member.
 
 **Example:**
+
 ```js
 const response = await fetch('/api/team-members', {
   method: 'POST',
@@ -73,8 +82,8 @@ const response = await fetch('/api/team-members', {
     name: 'John Doe',
     role: 'Full Stack Developer',
     email: 'john@company.com',
-    department: 'Engineering'
-  })
+    department: 'Engineering',
+  }),
 });
 const newMember = await response.json();
 ```
@@ -82,17 +91,20 @@ const newMember = await response.json();
 ---
 
 ### PUT /api/team-members/:id
+
 Update an existing team member.
 
 ---
 
 ### DELETE /api/team-members/:id
+
 Delete a team member.
 
 **Example:**
+
 ```js
 const response = await fetch('/api/team-members/1', {
-  method: 'DELETE'
+  method: 'DELETE',
 });
 const result = await response.json();
 console.log(result); // { success: true, deletedMember: {...} }
@@ -103,9 +115,11 @@ console.log(result); // { success: true, deletedMember: {...} }
 ## Performance Endpoints (Session 8)
 
 ### GET /api/performance/team-members
+
 Fetch all team members (1000 members for performance testing).
 
 **Example:**
+
 ```js
 const response = await fetch('/api/performance/team-members');
 const members = await response.json();
@@ -114,6 +128,7 @@ console.log(members); // Array of 1000 team members
 
 **Response:**
 Each member includes:
+
 ```json
 {
   "id": 1,
@@ -142,16 +157,19 @@ Each member includes:
 ---
 
 ### GET /api/performance/team-members/:id
+
 Fetch a single team member by ID from the large dataset.
 
 ---
 
 ### POST /api/performance/team-members
+
 Add a new team member to the performance dataset.
 
 ---
 
 ### DELETE /api/performance/team-members/:id
+
 Delete a team member from the performance dataset.
 
 ---
@@ -159,6 +177,7 @@ Delete a team member from the performance dataset.
 ## React Query Examples
 
 ### Query - Fetch all members (original)
+
 ```js
 import { useQuery } from '@tanstack/react-query';
 
@@ -169,7 +188,7 @@ function TeamList() {
       const response = await fetch('/api/team-members');
       if (!response.ok) throw new Error('Failed to fetch');
       return response.json();
-    }
+    },
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -186,6 +205,7 @@ function TeamList() {
 ```
 
 ### Query - Fetch performance dataset (Session 8)
+
 ```js
 const { data, isLoading } = useQuery({
   queryKey: ['performance-members'],
@@ -193,11 +213,12 @@ const { data, isLoading } = useQuery({
     const response = await fetch('/api/performance/team-members');
     if (!response.ok) throw new Error('Failed to fetch');
     return response.json();
-  }
+  },
 });
 ```
 
 ### Mutation - Add new member
+
 ```js
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -228,18 +249,19 @@ function AddMemberForm() {
 ```
 
 ### Mutation - Delete member
+
 ```js
 const deleteMutation = useMutation({
-  mutationFn: async (memberId) => {
+  mutationFn: async memberId => {
     const response = await fetch(`/api/team-members/${memberId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
     });
     if (!response.ok) throw new Error('Failed to delete member');
     return response.json();
   },
   onSuccess: () => {
     queryClient.invalidateQueries({ queryKey: ['team-members'] });
-  }
+  },
 });
 ```
 
@@ -256,16 +278,19 @@ const deleteMutation = useMutation({
 ## Reset Data
 
 To reset the original team members:
+
 ```js
 localStorage.removeItem('react-academy-team-members');
 ```
 
 To reset the performance dataset:
+
 ```js
 localStorage.removeItem('react-academy-performance-members');
 ```
 
 Or clear all localStorage:
+
 ```js
 localStorage.clear();
 ```
@@ -275,6 +300,7 @@ localStorage.clear();
 ## Console Logs
 
 MSW logs all requests to the console:
+
 - 📡 Fetching operations
 - ✅ Successful additions
 - ✏️ Updates

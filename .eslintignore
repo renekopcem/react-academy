@@ -1,0 +1,28 @@
+# Dependencies
+node_modules
+.yarn
+
+# Build outputs
+dist
+build
+
+# Cache
+.cache
+.vite
+
+# Configuration files
+*.config.js
+vite.config.js
+
+# Coverage
+coverage
+
+# Public assets
+public
+
+# IDE
+.vscode
+.idea
+
+# Misc
+*.log

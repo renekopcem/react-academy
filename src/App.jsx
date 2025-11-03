@@ -1,74 +1,79 @@
-import { useState } from "react";
-import Session1App from "../session-1/session1App.jsx";
-import Session2App from "../session-2/session2App.jsx";
-import Session3App from "../session-3/session3App.jsx";
-import Session4App from "../session-4/session4App.jsx";
-import Session5App from "../session-5/session5App.jsx";
-import Session6App from "../session-6/session6App.jsx";
-import Session7App from "../session-7/session7App.jsx";
-import Session8App from "../session-8/session8App.jsx";
-import "./App.css";
+import { useState } from 'react';
+import Session1App from '../session-1/session1App.jsx';
+import Session2App from '../session-2/session2App.jsx';
+import Session3App from '../session-3/session3App.jsx';
+import Session4App from '../session-4/session4App.jsx';
+import Session5App from '../session-5/session5App.jsx';
+import Session6App from '../session-6/session6App.jsx';
+import Session7App from '../session-7/session7App.jsx';
+import Session8App from '../session-8/session8App.jsx';
+import './App.css';
 
 function App() {
-  const [currentSession, setCurrentSession] = useState("navigator");
+  const [currentSession, setCurrentSession] = useState('navigator');
 
   const sessions = [
     {
-      id: "session-1",
-      title: "Session 1: React Basics",
-      description: "What is React, Components, JSX, Props",
-      duration: "45 min",
+      id: 'session-1',
+      title: 'Session 1: React Basics',
+      description: 'What is React, Components, JSX, Props',
+      duration: '45 min',
       component: Session1App,
     },
     {
-      id: "session-2",
-      title: "Session 2: State & Events",
-      description: "useState, Event Handling, Interactive Components",
-      duration: "45 min",
+      id: 'session-2',
+      title: 'Session 2: State & Events',
+      description: 'useState, Event Handling, Interactive Components',
+      duration: '45 min',
       component: Session2App,
     },
-        {
-      id: "session-3",
-      title: "Session 3: useEffect & Lifecycle",
-      description: "useEffect Hook, Component Lifecycle, Cleanup Functions",
-      duration: "45 min",
-      component: Session3App
+    {
+      id: 'session-3',
+      title: 'Session 3: useEffect & Lifecycle',
+      description: 'useEffect Hook, Component Lifecycle, Cleanup Functions',
+      duration: '45 min',
+      component: Session3App,
     },
     {
-      id: "session-4",
-      title: "Session 4: Context API",
-      description: "Context API, Provider Pattern, useContext Hook, Eliminating Prop Drilling",
-      duration: "45 min",
-      component: Session4App
+      id: 'session-4',
+      title: 'Session 4: Context API',
+      description:
+        'Context API, Provider Pattern, useContext Hook, Eliminating Prop Drilling',
+      duration: '45 min',
+      component: Session4App,
     },
     {
-      id: "session-5",
-      title: "Session 5: useReducer with Context",
-      description: "useReducer Hook, Reducer Pattern, Action Dispatching, Scalable State Management",
-      duration: "45 min",
-      component: Session5App
+      id: 'session-5',
+      title: 'Session 5: useReducer with Context',
+      description:
+        'useReducer Hook, Reducer Pattern, Action Dispatching, Scalable State Management',
+      duration: '45 min',
+      component: Session5App,
     },
     {
-      id: "session-6",
-      title: "Session 6: Data Fetching with React Query",
-      description: "React Query (TanStack Query), useQuery, useMutation, Cache Management, Server State",
-      duration: "45 min",
-      component: Session6App
+      id: 'session-6',
+      title: 'Session 6: Data Fetching with React Query',
+      description:
+        'React Query (TanStack Query), useQuery, useMutation, Cache Management, Server State',
+      duration: '45 min',
+      component: Session6App,
     },
     {
-      id: "session-7",
-      title: "Session 7: Routing in React",
-      description: "TanStack Router, React Router Comparison, Nested Routes, Data Preloading",
-      duration: "45 min",
-      component: Session7App
+      id: 'session-7',
+      title: 'Session 7: Routing in React',
+      description:
+        'TanStack Router, React Router Comparison, Nested Routes, Data Preloading',
+      duration: '45 min',
+      component: Session7App,
     },
     {
-      id: "session-8",
-      title: "Session 8: Performance Optimization",
-      description: "useMemo, React.memo, useCallback, Code Splitting, Lazy Loading",
-      duration: "45 min",
-      component: Session8App
-    }
+      id: 'session-8',
+      title: 'Session 8: Performance Optimization',
+      description:
+        'useMemo, React.memo, useCallback, Code Splitting, Lazy Loading',
+      duration: '45 min',
+      component: Session8App,
+    },
   ];
 
   const renderSessionNavigator = () => (
@@ -79,7 +84,7 @@ function App() {
       </header>
 
       <div className="sessions-grid">
-        {sessions.map((session) => (
+        {sessions.map(session => (
           <div key={session.id} className="session-card">
             <h3>{session.title}</h3>
             <p>{session.description}</p>
@@ -99,7 +104,7 @@ function App() {
   );
 
   const renderCurrentSession = () => {
-    const session = sessions.find((s) => s.id === currentSession);
+    const session = sessions.find(s => s.id === currentSession);
     if (!session) return null;
 
     const SessionComponent = session.component;
@@ -108,7 +113,7 @@ function App() {
         <nav className="session-nav">
           <button
             className="back-btn"
-            onClick={() => setCurrentSession("navigator")}
+            onClick={() => setCurrentSession('navigator')}
           >
             ← Back to Sessions
           </button>
@@ -121,7 +126,7 @@ function App() {
 
   return (
     <div className="App">
-      {currentSession === "navigator"
+      {currentSession === 'navigator'
         ? renderSessionNavigator()
         : renderCurrentSession()}
     </div>

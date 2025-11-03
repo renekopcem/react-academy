@@ -1,0 +1,27 @@
+{
+  "recommendations": [
+    // Code Quality & Formatting
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    // React & JavaScript
+    "dsznajder.es7-react-js-snippets",
+    "xabikos.javascriptsnippets",
+
+    // Development Tools
+    "christian-kohler.path-intellisense",
+    "christian-kohler.npm-intellisense",
+    "formulahendry.auto-rename-tag",
+
+    // Git
+    "eamodio.gitlens",
+
+    // Utilities
+    "usernamehw.errorlens",
+    "wayou.vscode-todo-highlight",
+    "naumovs.color-highlight",
+
+    // Visual Enhancements
+    "PKief.material-icon-theme"
+  ]
+}
