@@ -1016,11 +1016,13 @@ code {
   display: flex;
   align-items: center;
   gap: 20px;
+  color: var(--text-dark);
 }
 
 .session-nav h2 {
   margin: 0;
   font-size: 1.4em;
+  color: var(--text-dark);
 }
 
 /* ===== PRACTICE MODE NAVIGATION ===== */
@@ -1153,6 +1155,29 @@ code {
 
 .concept-block p:last-child {
   margin-bottom: 0;
+}
+
+.concept-block h4 {
+  margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Feature list styling */
+.feature-list,
+.practice-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-md) 0;
+}
+
+.feature-list li,
+.practice-list li {
+  padding: var(--spacing-sm) 0;
+  line-height: 1.7;
+  color: #4a5568;
+  font-size: 1.05rem;
 }
 
 /* ===== PRACTICE SECTION ===== */
