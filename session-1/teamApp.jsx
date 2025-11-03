@@ -1,4 +1,3 @@
-
 function TeamApp() {
   return (
     <div className="team-app">
@@ -12,8 +11,8 @@ function TeamApp() {
           <h3>🛠️ Try These Exercises:</h3>
           <ul>
             <li>Add a new team member to the array</li>
-            <li>Change someone's role or email</li>
-            <li>Add a new prop like "department" to TeamMember</li>
+            <li>Change someone&apos;s role or email</li>
+            <li>Add a new prop like &quot;department&quot; to TeamMember</li>
             <li>Modify the TeamMember component to display the new prop</li>
           </ul>
         </div>

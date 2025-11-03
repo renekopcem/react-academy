@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import CodeBlock from '../src/components/CodeBlock.jsx';
 
 function Session6Theory({ sessionId }) {
   return (
@@ -15,14 +16,19 @@ function Session6Theory({ sessionId }) {
 
       <section className="intro-section session6-intro">
         <h2>🌐 Master Server State Management!</h2>
-        <p className="intro-text">Learn how to fetch, cache, and synchronize server data with React Query (TanStack Query):</p>
+        <p className="intro-text">
+          Learn how to fetch, cache, and synchronize server data with React
+          Query (TanStack Query):
+        </p>
 
         <div className="learning-objectives">
           <div className="objective-card">
             <div className="objective-icon">🔄</div>
             <div className="objective-content">
               <h3>What is React Query?</h3>
-              <p>Understand the difference between client state and server state</p>
+              <p>
+                Understand the difference between client state and server state
+              </p>
             </div>
           </div>
 
@@ -30,7 +36,10 @@ function Session6Theory({ sessionId }) {
             <div className="objective-icon">📡</div>
             <div className="objective-content">
               <h3>Queries</h3>
-              <p>Fetch data with useQuery and handle loading, error, and success states</p>
+              <p>
+                Fetch data with useQuery and handle loading, error, and success
+                states
+              </p>
             </div>
           </div>
 
@@ -59,54 +68,59 @@ function Session6Theory({ sessionId }) {
           <div className="concept-blocks">
             <div className="concept-block">
               <h3>🤔 The Server State Problem</h3>
-              <p>Fetching data with <strong>useState + useEffect</strong> gets complex quickly:</p>
-              <div className="code-preview">
-                <code>
-                  <span className="comment">// Traditional approach - lots of boilerplate!</span><br/>
-                  <span className="keyword">const</span> [data, setData] = <span className="function">useState</span>(<span className="keyword">null</span>);<br/>
-                  <span className="keyword">const</span> [isLoading, setIsLoading] = <span className="function">useState</span>(<span className="boolean">true</span>);<br/>
-                  <span className="keyword">const</span> [error, setError] = <span className="function">useState</span>(<span className="keyword">null</span>);<br/><br/>
-                  <span className="function">useEffect</span>(() =&gt; &#123;<br/>
-                  &nbsp;&nbsp;<span className="keyword">async function</span> <span className="function">fetchData</span>() &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">try</span> &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">const</span> response = <span className="keyword">await</span> <span className="function">fetch</span>(<span className="string">'/api/data'</span>);<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">const</span> json = <span className="keyword">await</span> response.<span className="function">json</span>();<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="function">setData</span>(json);<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&#125; <span className="keyword">catch</span> (err) &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="function">setError</span>(err);<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&#125; <span className="keyword">finally</span> &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="function">setIsLoading</span>(<span className="boolean">false</span>);<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&#125;<br/>
-                  &nbsp;&nbsp;&#125;<br/>
-                  &nbsp;&nbsp;<span className="function">fetchData</span>();<br/>
-                  &#125;, []);
-                </code>
-              </div>
-              <p><strong>Problems:</strong> No caching, no refetching, no background updates, lots of repetitive code!</p>
+              <p>
+                Fetching data with <strong>useState + useEffect</strong> gets
+                complex quickly:
+              </p>
+              <CodeBlock>{`// Traditional approach - lots of boilerplate!
+const [data, setData] = useState(null);
+const [isLoading, setIsLoading] = useState(true);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  async function fetchData() {
+    try {
+      const response = await fetch('/api/data');
+      const json = await response.json();
+      setData(json);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  fetchData();
+}, []);`}</CodeBlock>
+              <p>
+                <strong>Problems:</strong> No caching, no refetching, no
+                background updates, lots of repetitive code!
+              </p>
             </div>
 
             <div className="concept-block">
               <h3>⚡ Enter React Query!</h3>
               <p>React Query handles all the complexity for you:</p>
-              <div className="code-preview">
-                <code>
-                  <span className="comment">// With React Query - so much simpler!</span><br/>
-                  <span className="keyword">import</span> &#123; useQuery &#125; <span className="keyword">from</span> <span className="string">'@tanstack/react-query'</span>;<br/><br/>
-                  <span className="keyword">const</span> &#123; data, isLoading, error &#125; = <span className="function">useQuery</span>(&#123;<br/>
-                  &nbsp;&nbsp;<span className="property">queryKey</span>: [<span className="string">'team-members'</span>],<br/>
-                  &nbsp;&nbsp;<span className="property">queryFn</span>: <span className="keyword">async</span> () =&gt; &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">const</span> response = <span className="keyword">await</span> <span className="function">fetch</span>(<span className="string">'/api/team-members'</span>);<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">return</span> response.<span className="function">json</span>();<br/>
-                  &nbsp;&nbsp;&#125;<br/>
-                  &#125;);
-                </code>
-              </div>
-              <p><strong>Benefits:</strong> Automatic caching, background refetching, loading & error states built-in!</p>
+              <CodeBlock>{`// With React Query - so much simpler!
+import { useQuery } from '@tanstack/react-query';
+
+const { data, isLoading, error } = useQuery({
+  queryKey: ['team-members'],
+  queryFn: async () => {
+    const response = await fetch('/api/team-members');
+    return response.json();
+  }
+});`}</CodeBlock>
+              <p>
+                <strong>Benefits:</strong> Automatic caching, background
+                refetching, loading & error states built-in!
+              </p>
             </div>
 
             <div className="concept-block">
               <h3>📡 Queries - Fetching Data</h3>
-              <p><strong>useQuery</strong> is for reading data (GET requests):</p>
+              <p>
+                <strong>useQuery</strong> is for reading data (GET requests):
+              </p>
 
               <div className="query-flow-diagram">
                 <div className="flow-step">
@@ -138,45 +152,43 @@ function Session6Theory({ sessionId }) {
                 </div>
               </div>
 
-              <div className="code-preview">
-                <code>
-                  <span className="keyword">const</span> &#123; data, isLoading, error, refetch &#125; = <span className="function">useQuery</span>(&#123;<br/>
-                  &nbsp;&nbsp;<span className="property">queryKey</span>: [<span className="string">'team-members'</span>], <span className="comment">// Unique identifier</span><br/>
-                  &nbsp;&nbsp;<span className="property">queryFn</span>: fetchTeamMembers, <span className="comment">// Function that returns a Promise</span><br/>
-                  &nbsp;&nbsp;<span className="property">staleTime</span>: <span className="number">5000</span>, <span className="comment">// Data fresh for 5 seconds</span><br/>
-                  &nbsp;&nbsp;<span className="property">refetchOnWindowFocus</span>: <span className="boolean">true</span> <span className="comment">// Refetch when user returns</span><br/>
-                  &#125;);<br/><br/>
-                  <span className="keyword">if</span> (isLoading) <span className="keyword">return</span> <span className="string">&lt;Loading /&gt;</span>;<br/>
-                  <span className="keyword">if</span> (error) <span className="keyword">return</span> <span className="string">&lt;Error /&gt;</span>;<br/>
-                  <span className="keyword">return</span> <span className="string">&lt;div&gt;&#123;data.map(...)&#125;&lt;/div&gt;</span>;
-                </code>
-              </div>
+              <CodeBlock>{`const { data, isLoading, error, refetch } = useQuery({
+  queryKey: ['team-members'], // Unique identifier
+  queryFn: fetchTeamMembers, // Function that returns a Promise
+  staleTime: 5000, // Data fresh for 5 seconds
+  refetchOnWindowFocus: true // Refetch when user returns
+});
+
+if (isLoading) return <Loading />;
+if (error) return <Error />;
+return <div>{data.map(...)}</div>;`}</CodeBlock>
             </div>
 
             <div className="concept-block">
               <h3>✏️ Mutations - Updating Data</h3>
-              <p><strong>useMutation</strong> is for modifying data (POST, PUT, DELETE):</p>
-              <div className="code-preview">
-                <code>
-                  <span className="keyword">const</span> queryClient = <span className="function">useQueryClient</span>();<br/><br/>
-                  <span className="keyword">const</span> mutation = <span className="function">useMutation</span>(&#123;<br/>
-                  &nbsp;&nbsp;<span className="property">mutationFn</span>: <span className="keyword">async</span> (newMember) =&gt; &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">const</span> response = <span className="keyword">await</span> <span className="function">fetch</span>(<span className="string">'/api/team-members'</span>, &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="property">method</span>: <span className="string">'POST'</span>,<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="property">headers</span>: &#123; <span className="string">'Content-Type'</span>: <span className="string">'application/json'</span> &#125;,<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="property">body</span>: JSON.<span className="function">stringify</span>(newMember)<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&#125;);<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">return</span> response.<span className="function">json</span>();<br/>
-                  &nbsp;&nbsp;&#125;,<br/>
-                  &nbsp;&nbsp;<span className="property">onSuccess</span>: () =&gt; &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="comment">// Invalidate queries to refetch fresh data</span><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;queryClient.<span className="function">invalidateQueries</span>(&#123; <span className="property">queryKey</span>: [<span className="string">'team-members'</span>] &#125;);<br/>
-                  &nbsp;&nbsp;&#125;<br/>
-                  &#125;);<br/><br/>
-                  <span className="comment">// Use the mutation</span><br/>
-                  mutation.<span className="function">mutate</span>(&#123; <span className="property">name</span>: <span className="string">'John'</span>, <span className="property">role</span>: <span className="string">'Developer'</span> &#125;);
-                </code>
-              </div>
+              <p>
+                <strong>useMutation</strong> is for modifying data (POST, PUT,
+                DELETE):
+              </p>
+              <CodeBlock>{`const queryClient = useQueryClient();
+
+const mutation = useMutation({
+  mutationFn: async (newMember) => {
+    const response = await fetch('/api/team-members', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newMember)
+    });
+    return response.json();
+  },
+  onSuccess: () => {
+    // Invalidate queries to refetch fresh data
+    queryClient.invalidateQueries({ queryKey: ['team-members'] });
+  }
+});
+
+// Use the mutation
+mutation.mutate({ name: 'John', role: 'Developer' });`}</CodeBlock>
             </div>
 
             <div className="concept-block">
@@ -185,28 +197,22 @@ function Session6Theory({ sessionId }) {
               <div className="comparison-grid">
                 <div className="comparison-before">
                   <h4>❌ Without Invalidation</h4>
-                  <div className="code-preview">
-                    <code>
-                      <span className="comment">// Data is stale!</span><br/>
-                      <span className="keyword">await</span> <span className="function">addMember</span>(newMember);<br/>
-                      <span className="comment">// UI still shows old data</span>
-                    </code>
-                  </div>
+                  <CodeBlock>{`// Data is stale!
+await addMember(newMember);
+// UI still shows old data`}</CodeBlock>
                 </div>
                 <div className="comparison-after">
                   <h4>✅ With Invalidation</h4>
-                  <div className="code-preview">
-                    <code>
-                      <span className="keyword">await</span> <span className="function">addMember</span>(newMember);<br/>
-                      queryClient.<span className="function">invalidateQueries</span>(&#123;<br/>
-                      &nbsp;&nbsp;<span className="property">queryKey</span>: [<span className="string">'team-members'</span>]<br/>
-                      &#125;);<br/>
-                      <span className="comment">// Fresh data automatically refetched!</span>
-                    </code>
-                  </div>
+                  <CodeBlock>{`await addMember(newMember);
+queryClient.invalidateQueries({
+  queryKey: ['team-members']
+});
+// Fresh data automatically refetched!`}</CodeBlock>
                 </div>
               </div>
-              <p><strong>Result:</strong> UI always stays in sync with server!</p>
+              <p>
+                <strong>Result:</strong> UI always stays in sync with server!
+              </p>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import CodeBlock from '../src/components/CodeBlock.jsx';
 
 function Session5Theory({ sessionId }) {
   return (
@@ -15,14 +16,20 @@ function Session5Theory({ sessionId }) {
 
       <section className="intro-section session5-intro">
         <h2>🔄 Scale Your State Management!</h2>
-        <p className="intro-text">Learn when and how to upgrade from useState to useReducer for complex state logic:</p>
+        <p className="intro-text">
+          Learn when and how to upgrade from useState to useReducer for complex
+          state logic:
+        </p>
 
         <div className="learning-objectives">
           <div className="objective-card">
             <div className="objective-icon">⚠️</div>
             <div className="objective-content">
               <h3>When useState Gets Complex</h3>
-              <p>Recognize when multiple related state updates become hard to manage</p>
+              <p>
+                Recognize when multiple related state updates become hard to
+                manage
+              </p>
             </div>
           </div>
 
@@ -46,7 +53,9 @@ function Session5Theory({ sessionId }) {
             <div className="objective-icon">🚀</div>
             <div className="objective-content">
               <h3>Context + Reducer</h3>
-              <p>Combine useReducer with Context for scalable state management</p>
+              <p>
+                Combine useReducer with Context for scalable state management
+              </p>
             </div>
           </div>
         </div>
@@ -59,41 +68,48 @@ function Session5Theory({ sessionId }) {
           <div className="concept-blocks">
             <div className="concept-block">
               <h3>⚠️ The Complex State Problem</h3>
-              <p>When you have multiple related pieces of state that change together, useState can become messy:</p>
-              <div className="code-preview">
-                <code>
-                  <span className="comment">// Multiple related state updates - hard to manage!</span><br/>
-                  <span className="keyword">const</span> [searchTerm, setSearchTerm] = <span className="function">useState</span>(<span className="string">''</span>);<br/>
-                  <span className="keyword">const</span> [isGridView, setIsGridView] = <span className="function">useState</span>(<span className="boolean">true</span>);<br/>
-                  <span className="keyword">const</span> [selectedMember, setSelectedMember] = <span className="function">useState</span>(<span className="keyword">null</span>);<br/>
-                  <span className="keyword">const</span> [filterDept, setFilterDept] = <span className="function">useState</span>(<span className="string">''</span>);<br/><br/>
-                  <span className="comment">// Each action needs multiple setState calls</span><br/>
-                  <span className="keyword">function</span> <span className="function">resetFilters</span>() &#123;<br/>
-                  &nbsp;&nbsp;<span className="function">setSearchTerm</span>(<span className="string">''</span>);<br/>
-                  &nbsp;&nbsp;<span className="function">setFilterDept</span>(<span className="string">''</span>);<br/>
-                  &nbsp;&nbsp;<span className="function">setSelectedMember</span>(<span className="keyword">null</span>);<br/>
-                  &#125;
-                </code>
-              </div>
-              <p><strong>Problem:</strong> Related state updates are scattered across multiple setState calls</p>
+              <p>
+                When you have multiple related pieces of state that change
+                together, useState can become messy:
+              </p>
+              <CodeBlock>{`// Multiple related state updates - hard to manage!
+const [searchTerm, setSearchTerm] = useState('');
+const [isGridView, setIsGridView] = useState(true);
+const [selectedMember, setSelectedMember] = useState(null);
+const [filterDept, setFilterDept] = useState('');
+
+// Each action needs multiple setState calls
+function resetFilters() {
+  setSearchTerm('');
+  setFilterDept('');
+  setSelectedMember(null);
+}`}</CodeBlock>
+              <p>
+                <strong>Problem:</strong> Related state updates are scattered
+                across multiple setState calls
+              </p>
             </div>
 
             <div className="concept-block">
               <h3>🎯 The Reducer Pattern</h3>
-              <p>A reducer is a function that takes the <strong>current state</strong> and an <strong>action</strong>, then returns the <strong>new state</strong>:</p>
+              <p>
+                A reducer is a function that takes the{' '}
+                <strong>current state</strong> and an <strong>action</strong>,
+                then returns the <strong>new state</strong>:
+              </p>
 
               <div className="reducer-flow-diagram">
                 <div className="flow-step">
                   <div className="flow-box state-box">
                     <div className="flow-label">Current State</div>
-                    <code>&#123; count: 5 &#125;</code>
+                    <code>{`{ count: 5 }`}</code>
                   </div>
                 </div>
                 <div className="flow-arrow">→</div>
                 <div className="flow-step">
                   <div className="flow-box action-box">
                     <div className="flow-label">Action</div>
-                    <code>&#123; type: 'INCREMENT' &#125;</code>
+                    <code>{`{ type: 'INCREMENT' }`}</code>
                   </div>
                 </div>
                 <div className="flow-arrow">→</div>
@@ -107,86 +123,90 @@ function Session5Theory({ sessionId }) {
                 <div className="flow-step">
                   <div className="flow-box new-state-box">
                     <div className="flow-label">New State</div>
-                    <code>&#123; count: 6 &#125;</code>
+                    <code>{`{ count: 6 }`}</code>
                   </div>
                 </div>
               </div>
 
-              <div className="code-preview">
-                <code>
-                  <span className="comment">// Reducer function: (state, action) =&gt; newState</span><br/>
-                  <span className="keyword">function</span> <span className="function">teamReducer</span>(state, action) &#123;<br/>
-                  &nbsp;&nbsp;<span className="keyword">switch</span> (action.type) &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">case</span> <span className="string">'SELECT_MEMBER'</span>:<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">return</span> &#123; ...state, <span className="property">selectedMember</span>: action.payload &#125;;<br/><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">case</span> <span className="string">'SET_SEARCH'</span>:<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">return</span> &#123; ...state, <span className="property">searchTerm</span>: action.payload &#125;;<br/><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">case</span> <span className="string">'RESET_FILTERS'</span>:<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">return</span> &#123; ...state, <span className="property">searchTerm</span>: <span className="string">''</span>, <span className="property">selectedMember</span>: <span className="keyword">null</span> &#125;;<br/><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">default</span>:<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">return</span> state;<br/>
-                  &nbsp;&nbsp;&#125;<br/>
-                  &#125;
-                </code>
-              </div>
-              <p><strong>Benefit:</strong> All state logic is centralized in one place!</p>
+              <CodeBlock>{`// Reducer function: (state, action) => newState
+function teamReducer(state, action) {
+  switch (action.type) {
+    case 'SELECT_MEMBER':
+      return { ...state, selectedMember: action.payload };
+
+    case 'SET_SEARCH':
+      return { ...state, searchTerm: action.payload };
+
+    case 'RESET_FILTERS':
+      return { ...state, searchTerm: '', selectedMember: null };
+
+    default:
+      return state;
+  }
+}`}</CodeBlock>
+              <p>
+                <strong>Benefit:</strong> All state logic is centralized in one
+                place!
+              </p>
             </div>
 
             <div className="concept-block">
               <h3>🔄 useReducer Hook</h3>
-              <p>React's <strong>useReducer</strong> hook works like useState, but for complex state:</p>
-              <div className="code-preview">
-                <code>
-                  <span className="keyword">import</span> &#123; useReducer &#125; <span className="keyword">from</span> <span className="string">'react'</span>;<br/><br/>
-                  <span className="comment">// Initial state object</span><br/>
-                  <span className="keyword">const</span> initialState = &#123;<br/>
-                  &nbsp;&nbsp;<span className="property">searchTerm</span>: <span className="string">''</span>,<br/>
-                  &nbsp;&nbsp;<span className="property">isGridView</span>: <span className="boolean">true</span>,<br/>
-                  &nbsp;&nbsp;<span className="property">selectedMember</span>: <span className="keyword">null</span><br/>
-                  &#125;;<br/><br/>
-                  <span className="comment">// Use the reducer</span><br/>
-                  <span className="keyword">const</span> [state, dispatch] = <span className="function">useReducer</span>(teamReducer, initialState);<br/><br/>
-                  <span className="comment">// Dispatch actions to update state</span><br/>
-                  <span className="function">dispatch</span>(&#123; <span className="property">type</span>: <span className="string">'SELECT_MEMBER'</span>, <span className="property">payload</span>: member &#125;);<br/>
-                  <span className="function">dispatch</span>(&#123; <span className="property">type</span>: <span className="string">'SET_SEARCH'</span>, <span className="property">payload</span>: <span className="string">'John'</span> &#125;);<br/>
-                  <span className="function">dispatch</span>(&#123; <span className="property">type</span>: <span className="string">'RESET_FILTERS'</span> &#125;);
-                </code>
-              </div>
+              <p>
+                React's <strong>useReducer</strong> hook works like useState,
+                but for complex state:
+              </p>
+              <CodeBlock>{`import { useReducer } from 'react';
+
+// Initial state object
+const initialState = {
+  searchTerm: '',
+  isGridView: true,
+  selectedMember: null
+};
+
+// Use the reducer
+const [state, dispatch] = useReducer(teamReducer, initialState);
+
+// Dispatch actions to update state
+dispatch({ type: 'SELECT_MEMBER', payload: member });
+dispatch({ type: 'SET_SEARCH', payload: 'John' });
+dispatch({ type: 'RESET_FILTERS' });`}</CodeBlock>
             </div>
 
             <div className="concept-block">
               <h3>🚀 Combining useReducer + Context</h3>
-              <p>The real power: Put your reducer in Context so any component can dispatch actions!</p>
+              <p>
+                The real power: Put your reducer in Context so any component can
+                dispatch actions!
+              </p>
               <div className="comparison-grid">
                 <div className="comparison-before">
                   <h4>Session 4: useState + Context</h4>
-                  <div className="code-preview">
-                    <code>
-                      <span className="keyword">const</span> [searchTerm, setSearchTerm] = <span className="function">useState</span>(<span className="string">''</span>);<br/>
-                      <span className="keyword">const</span> [selected, setSelected] = <span className="function">useState</span>(<span className="keyword">null</span>);<br/><br/>
-                      <span className="keyword">const</span> value = &#123;<br/>
-                      &nbsp;&nbsp;searchTerm,<br/>
-                      &nbsp;&nbsp;setSearchTerm,<br/>
-                      &nbsp;&nbsp;selected,<br/>
-                      &nbsp;&nbsp;setSelected<br/>
-                      &#125;;
-                    </code>
-                  </div>
+                  <CodeBlock>{`const [searchTerm, setSearchTerm] = useState('');
+const [selected, setSelected] = useState(null);
+
+const value = {
+  searchTerm,
+  setSearchTerm,
+  selected,
+  setSelected
+};`}</CodeBlock>
                 </div>
                 <div className="comparison-after">
                   <h4>Session 5: useReducer + Context</h4>
-                  <div className="code-preview">
-                    <code>
-                      <span className="keyword">const</span> [state, dispatch] = <span className="function">useReducer</span>(reducer, initialState);<br/><br/>
-                      <span className="keyword">const</span> value = &#123;<br/>
-                      &nbsp;&nbsp;...state,<br/>
-                      &nbsp;&nbsp;dispatch<br/>
-                      &#125;;
-                    </code>
-                  </div>
+                  <CodeBlock>{`const [state, dispatch] = useReducer(reducer, initialState);
+
+const value = {
+  ...state,
+  dispatch
+};`}</CodeBlock>
                 </div>
               </div>
-              <p><strong>Result:</strong> Cleaner code, predictable state updates, easier debugging!</p>
+              <p>
+                <strong>Result:</strong> Cleaner code, predictable state
+                updates, easier debugging!
+              </p>
             </div>
           </div>
 

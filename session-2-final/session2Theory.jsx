@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import CodeBlock from '../src/components/CodeBlock.jsx';
 
 // Session 2 Theory Component - State & Events learning content
 function Session2Theory({ sessionId }) {
@@ -74,30 +75,15 @@ function Session2Theory({ sessionId }) {
                 component. Unlike props (which come from parent components),
                 state is managed within the component itself.
               </p>
-              <div className="code-preview">
-                <code>
-                  // Props - data from parent (read-only)
-                  <br />
-                  function TeamMember(props) {`{`}
-                  <br />
-                  &nbsp;&nbsp;return &lt;h3&gt;{`{props.name}`}&lt;/h3&gt;;
-                  <br />
-                  {`}`}
-                </code>
-              </div>
-              <div className="code-preview">
-                <code>
-                  // State - component's own data (changeable)
-                  <br />
-                  function Counter() {`{`}
-                  <br />
-                  &nbsp;&nbsp;const [count, setCount] = useState(0);
-                  <br />
-                  &nbsp;&nbsp;return &lt;p&gt;Count: {`{count}`}&lt;/p&gt;;
-                  <br />
-                  {`}`}
-                </code>
-              </div>
+              <CodeBlock>{`// Props - data from parent (read-only)
+function TeamMember(props) {
+  return <h3>{props.name}</h3>;
+}`}</CodeBlock>
+              <CodeBlock>{`// State - component's own data (changeable)
+function Counter() {
+  const [count, setCount] = useState(0);
+  return <p>Count: {count}</p>;
+}`}</CodeBlock>
             </div>
 
             <div className="concept-block">
@@ -107,22 +93,13 @@ function Session2Theory({ sessionId }) {
                 functional components. It returns an array with the current
                 value and a function to update it.
               </p>
-              <div className="code-preview">
-                <code>
-                  import {`{ useState }`} from 'react';
-                  <br />
-                  <br />
-                  function MyComponent() {`{`}
-                  <br />
-                  &nbsp;&nbsp;const [isVisible, setIsVisible] = useState(true);
-                  <br />
-                  &nbsp;&nbsp;// isVisible = current state value
-                  <br />
-                  &nbsp;&nbsp;// setIsVisible = function to update state
-                  <br />
-                  {`}`}
-                </code>
-              </div>
+              <CodeBlock>{`import { useState } from 'react';
+
+function MyComponent() {
+  const [isVisible, setIsVisible] = useState(true);
+  // isVisible = current state value
+  // setIsVisible = function to update state
+}`}</CodeBlock>
             </div>
 
             <div className="concept-block">
@@ -131,32 +108,19 @@ function Session2Theory({ sessionId }) {
                 Event handlers are functions that respond to user interactions.
                 The most common is <strong>onClick</strong> for button clicks.
               </p>
-              <div className="code-preview">
-                <code>
-                  function ToggleButton() {`{`}
-                  <br />
-                  &nbsp;&nbsp;const [isOn, setIsOn] = useState(false);
-                  <br />
-                  <br />
-                  &nbsp;&nbsp;const handleClick = () =&gt; {`{`}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;setIsOn(!isOn); // Toggle the state
-                  <br />
-                  &nbsp;&nbsp;{`}`};<br />
-                  <br />
-                  &nbsp;&nbsp;return (<br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={`{handleClick}`}
-                  &gt;
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{`{isOn ? 'ON' : 'OFF'}`}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;
-                  <br />
-                  &nbsp;&nbsp;);
-                  <br />
-                  {`}`}
-                </code>
-              </div>
+              <CodeBlock>{`function ToggleButton() {
+  const [isOn, setIsOn] = useState(false);
+
+  const handleClick = () => {
+    setIsOn(!isOn); // Toggle the state
+  };
+
+  return (
+    <button onClick={handleClick}>
+      {isOn ? 'ON' : 'OFF'}
+    </button>
+  );
+}`}</CodeBlock>
             </div>
 
             <div className="concept-block">
@@ -170,20 +134,14 @@ function Session2Theory({ sessionId }) {
                 <div className="before-after">
                   <div className="before">
                     <h4>Before Click:</h4>
-                    <code>
-                      isOn = false
-                      <br />
-                      Button shows "OFF"
-                    </code>
+                    <CodeBlock>{`isOn = false
+Button shows "OFF"`}</CodeBlock>
                   </div>
                   <div className="arrow">→</div>
                   <div className="after">
                     <h4>After Click:</h4>
-                    <code>
-                      isOn = true
-                      <br />
-                      Button shows "ON"
-                    </code>
+                    <CodeBlock>{`isOn = true
+Button shows "ON"`}</CodeBlock>
                   </div>
                 </div>
               </div>

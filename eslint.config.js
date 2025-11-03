@@ -39,7 +39,8 @@ export default [
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off', // Not needed in React 17+
-      'react/prop-types': 'warn',
+      'react/prop-types': 'off', // Disabled for educational purposes
+      'react/no-unescaped-entities': 'off', // Allow quotes and apostrophes in JSX
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'no-console': 'off', // Allow console for educational purposes
     },

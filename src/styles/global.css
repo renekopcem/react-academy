@@ -618,6 +618,8 @@ label {
   font-size: 0.9rem;
   line-height: 1.6;
   color: #e2e8f0;
+  background: none;
+  padding: 0;
 }
 
 /* Syntax Highlighting */

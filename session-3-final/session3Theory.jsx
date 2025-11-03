@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import CodeBlock from '../src/components/CodeBlock.jsx';
 
 function Session3Theory({ sessionId }) {
   return (
@@ -6,7 +7,9 @@ function Session3Theory({ sessionId }) {
       <header className="session-header">
         <div className="header-content">
           <h1>React Academy - Session 3</h1>
-          <p className="session-subtitle">Master useEffect & Component Lifecycle</p>
+          <p className="session-subtitle">
+            Master useEffect & Component Lifecycle
+          </p>
         </div>
         <div className="session-badge">
           <span>45 min</span>
@@ -15,7 +18,10 @@ function Session3Theory({ sessionId }) {
 
       <section className="intro-section">
         <h2>⚡ Adding Side Effects to Components!</h2>
-        <p className="intro-text">In this session, you'll learn how to handle side effects in React components:</p>
+        <p className="intro-text">
+          In this session, you'll learn how to handle side effects in React
+          components:
+        </p>
 
         <div className="learning-objectives">
           <div className="objective-card">
@@ -59,7 +65,12 @@ function Session3Theory({ sessionId }) {
           <div className="concept-blocks">
             <div className="concept-block">
               <h3>🔄 Component Lifecycle</h3>
-              <p>React components go through three main phases: <strong>mounting</strong> (first render), <strong>updating</strong> (re-renders), and <strong>unmounting</strong> (removal from DOM).</p>
+              <p>
+                React components go through three main phases:{' '}
+                <strong>mounting</strong> (first render),{' '}
+                <strong>updating</strong> (re-renders), and{' '}
+                <strong>unmounting</strong> (removal from DOM).
+              </p>
               <div className="lifecycle-flow">
                 <div className="lifecycle-step">
                   <h4>Mount</h4>
@@ -80,68 +91,82 @@ function Session3Theory({ sessionId }) {
 
             <div className="concept-block">
               <h3>⚡ useEffect Hook</h3>
-              <p>The <strong>useEffect</strong> hook lets you perform side effects in functional components. Think of it as a way to "do something" when your component renders.</p>
-              <div className="code-preview">
-                <code>
-                  import &#123; useEffect, useState &#125; from 'react';<br/><br/>
-                  function MyComponent() &#123;<br/>
-                  &nbsp;&nbsp;const [count, setCount] = useState(0);<br/><br/>
-                  &nbsp;&nbsp;useEffect(() =&gt; &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;document.title = 'Count: ' + count;<br/>
-                  &nbsp;&nbsp;&#125;);<br/><br/>
-                  &nbsp;&nbsp;const handleClick = () =&gt; setCount(count + 1);<br/><br/>
-                  &nbsp;&nbsp;return &lt;button onClick=&#123;handleClick&#125;&gt;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&#123;count&#125;<br/>
-                  &nbsp;&nbsp;&lt;/button&gt;;<br/>
-                  &#125;
-                </code>
-              </div>
+              <p>
+                The <strong>useEffect</strong> hook lets you perform side
+                effects in functional components. Think of it as a way to "do
+                something" when your component renders.
+              </p>
+              <CodeBlock>{`import { useEffect, useState } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = 'Count: ' + count;
+  });
+
+  const handleClick = () => setCount(count + 1);
+
+  return <button onClick={handleClick}>
+    {count}
+  </button>;
+}`}</CodeBlock>
             </div>
 
             <div className="concept-block">
               <h3>🎯 Dependency Arrays</h3>
-              <p>Control <strong>when</strong> your effect runs by passing a dependency array as the second argument to useEffect.</p>
+              <p>
+                Control <strong>when</strong> your effect runs by passing a
+                dependency array as the second argument to useEffect.
+              </p>
               <div className="dependency-examples">
                 <div className="dependency-case">
                   <h4>Run on every render:</h4>
-                  <code>useEffect(() =&gt; &#123; /* ... */ &#125;);</code>
+                  <code>{`useEffect(() => { /* ... */ });`}</code>
                 </div>
                 <div className="dependency-case">
                   <h4>Run once on mount:</h4>
-                  <code>useEffect(() =&gt; &#123; /* ... */ &#125;, []);</code>
+                  <code>{`useEffect(() => { /* ... */ }, []);`}</code>
                 </div>
                 <div className="dependency-case">
                   <h4>Run when count changes:</h4>
-                  <code>useEffect(() =&gt; &#123; /* ... */ &#125;, [count]);</code>
+                  <code>{`useEffect(() => { /* ... */ }, [count]);`}</code>
                 </div>
               </div>
             </div>
 
             <div className="concept-block">
               <h3>🧹 Cleanup Functions</h3>
-              <p>Return a function from useEffect to <strong>clean up</strong> after your effect. This prevents memory leaks and unwanted behavior.</p>
-              <div className="code-preview">
-                <code>
-                  useEffect(() =&gt; &#123;<br/>
-                  &nbsp;&nbsp;const timer = setTimeout(() =&gt; &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;console.log('Delayed action!');<br/>
-                  &nbsp;&nbsp;&#125;, 1000);<br/><br/>
-                  &nbsp;&nbsp;// Cleanup function<br/>
-                  &nbsp;&nbsp;return () =&gt; &#123;<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;clearTimeout(timer);<br/>
-                  &nbsp;&nbsp;&#125;;<br/>
-                  &#125;, []);
-                </code>
-              </div>
+              <p>
+                Return a function from useEffect to <strong>clean up</strong>{' '}
+                after your effect. This prevents memory leaks and unwanted
+                behavior.
+              </p>
+              <CodeBlock>{`useEffect(() => {
+  const timer = setTimeout(() => {
+    console.log('Delayed action!');
+  }, 1000);
+
+  // Cleanup function
+  return () => {
+    clearTimeout(timer);
+  };
+}, []);`}</CodeBlock>
               <div className="cleanup-note">
-                <p><strong>Why cleanup?</strong> Without it, timers keep running even after the component is gone!</p>
+                <p>
+                  <strong>Why cleanup?</strong> Without it, timers keep running
+                  even after the component is gone!
+                </p>
               </div>
             </div>
           </div>
 
           <div className="practice-cta">
             <h3>Ready to add search to our Team Directory?</h3>
-            <p>Let's use useEffect to create a debounced search with proper cleanup!</p>
+            <p>
+              Let's use useEffect to create a debounced search with proper
+              cleanup!
+            </p>
             <Link
               to="/sessions/$id/practice"
               params={{ id: sessionId }}
