@@ -1,4 +1,3 @@
-import "../session-1-final/styles.css";
 
 function TeamApp() {
   return (

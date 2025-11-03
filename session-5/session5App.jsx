@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import TeamApp from './teamApp.jsx';
-import './styles.css';
 
 function Session5App() {
   const [showPractice, setShowPractice] = useState(false);

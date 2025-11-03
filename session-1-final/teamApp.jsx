@@ -1,5 +1,4 @@
 import TeamDirectory from './components/teamDirectory.jsx';
-import './styles.css';
 
 // TeamApp - The hands-on application students will build
 function TeamApp() {

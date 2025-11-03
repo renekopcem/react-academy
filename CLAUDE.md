@@ -41,10 +41,17 @@ Each session follows a **theory-to-practice** pattern:
 - **Dual Mode**: Theory mode with explanations, practice mode with working app
 
 ### Styling Approach
-- Single CSS file per session (`session-X/styles.css`)
+- **Global Styles** (`src/styles/global.css`): Consolidated styles imported in `src/main.jsx`
+  - CSS custom properties (variables) for colors, spacing, shadows, and transitions
+  - Reusable components: buttons, cards, forms, modals, code blocks
+  - Session header component styling
+  - Loading and error states
+  - Responsive utilities and grids
+- Sessions no longer need individual CSS files - all styling is handled globally
 - Modern design with gradients, glassmorphism effects
+- Consistent design system with CSS variables
 - Responsive grid layouts
-- Dark code preview blocks for syntax examples
+- Dark code preview blocks for syntax examples with syntax highlighting
 
 ### File Naming Convention
 - All component files use lowercase: `session1App.jsx`, `teamApp.jsx`, `teamDirectory.jsx`
@@ -54,6 +61,7 @@ Each session follows a **theory-to-practice** pattern:
 1. Create `session-X/` directory
 2. Follow the theory/practice dual-component pattern
 3. Add session object to `src/App.jsx` sessions array
-4. Create dedicated CSS file for session-specific styling
+4. Use global styles from `src/styles/global.css` - no need for session-specific CSS files
+5. If truly unique styles are needed, create a minimal `session-X/styles.css` file, but prefer using global CSS classes and variables
 
 The architecture prioritizes educational clarity over complex state management or routing libraries.

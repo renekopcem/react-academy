@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import TeamApp from './teamApp.jsx';
-import './styles.css';
 
 // Session 1 App - React fundamentals learning objectives and practice
 function Session1App() {
