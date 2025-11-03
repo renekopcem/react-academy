@@ -5,9 +5,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 **Development:**
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build for production (runs TypeScript compiler then Vite build)  
-- `npm run preview` - Preview production build locally
+
+- `yarn run dev` - Start development server with hot reload
+- `yarn run build` - Build for production (runs TypeScript compiler then Vite build)
+- `yarn run preview` - Preview production build locally
 
 **No test suite or linting configured** - this is a teaching-focused project without development tooling beyond the basics.
 
@@ -18,6 +19,7 @@ This is a **React Academy** - an educational platform for teaching React fundame
 ### Core Structure
 
 **Navigation System (`src/App.jsx`):**
+
 - Session navigator with cards showing available sessions
 - State-based routing between session navigator and individual sessions
 - Extensible sessions array for adding future content
@@ -36,11 +38,13 @@ Each session follows a **theory-to-practice** pattern:
    - Navigation back to theory
 
 ### Session 1 Structure
+
 - **Educational Content**: Component composition, JSX syntax, props
 - **Practice App**: Team Directory showing component hierarchy (TeamDirectory → TeamMember)
 - **Dual Mode**: Theory mode with explanations, practice mode with working app
 
 ### Styling Approach
+
 - **Global Styles** (`src/styles/global.css`): Consolidated styles imported in `src/main.jsx`
   - CSS custom properties (variables) for colors, spacing, shadows, and transitions
   - Reusable components: buttons, cards, forms, modals, code blocks
@@ -54,10 +58,12 @@ Each session follows a **theory-to-practice** pattern:
 - Dark code preview blocks for syntax examples with syntax highlighting
 
 ### File Naming Convention
+
 - All component files use lowercase: `session1App.jsx`, `teamApp.jsx`, `teamDirectory.jsx`
 - Components folder structure: `session-X/components/`
 
 ### Adding New Sessions
+
 1. Create `session-X/` directory
 2. Follow the theory/practice dual-component pattern
 3. Add session object to `src/App.jsx` sessions array
