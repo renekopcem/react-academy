@@ -11,12 +11,9 @@ import { QueryClient, QueryClientProvider, useSuspenseQuery, useQueryClient } fr
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Suspense } from 'react';
-import { startMockWorker } from './mocks/browser.js';
-
-// Initialize MSW
-await startMockWorker();
 
 // Create QueryClient with default options
+// Note: MSW is initialized globally in src/main.jsx
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

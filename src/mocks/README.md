@@ -1,6 +1,6 @@
 # Mock Team API Documentation
 
-This is a client-side mock API powered by **MSW (Mock Service Worker)** for Session 6: React Query.
+This is a client-side mock API powered by **MSW (Mock Service Worker)** for React Academy sessions.
 
 ## Features
 
@@ -9,17 +9,28 @@ This is a client-side mock API powered by **MSW (Mock Service Worker)** for Sess
 - Realistic network delays (300-600ms)
 - Visible in Browser DevTools Network tab
 - No backend server needed
+- Separate endpoints for different sessions
 
-## Available Endpoints
+## Available Endpoint Groups
+
+### 1. Original Endpoints (Sessions 6-7)
+Small dataset with 6 team members. Uses localStorage key: `'react-academy-team-members'`
+
+### 2. Performance Endpoints (Session 8)
+Large dataset with 1000 team members for performance testing. Uses localStorage key: `'react-academy-performance-members'`
+
+---
+
+## Original Endpoints (Sessions 6-7)
 
 ### GET /api/team-members
-Fetch all team members.
+Fetch all team members (6 members).
 
 **Example:**
 ```js
 const response = await fetch('/api/team-members');
 const members = await response.json();
-console.log(members); // Array of team members
+console.log(members); // Array of 6 team members
 ```
 
 **Response:**
@@ -48,8 +59,6 @@ const response = await fetch('/api/team-members/1');
 const member = await response.json();
 ```
 
-**Response:** Single member object or 404 if not found.
-
 ---
 
 ### POST /api/team-members
@@ -70,26 +79,10 @@ const response = await fetch('/api/team-members', {
 const newMember = await response.json();
 ```
 
-**Response:** The created member with auto-generated `id` and `createdAt` timestamp.
-
 ---
 
 ### PUT /api/team-members/:id
 Update an existing team member.
-
-**Example:**
-```js
-const response = await fetch('/api/team-members/1', {
-  method: 'PUT',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    role: 'Senior Frontend Developer'
-  })
-});
-const updatedMember = await response.json();
-```
-
-**Response:** The updated member object or 404 if not found.
 
 ---
 
@@ -105,13 +98,67 @@ const result = await response.json();
 console.log(result); // { success: true, deletedMember: {...} }
 ```
 
-**Response:** Success message with the deleted member data, or 404 if not found.
+---
+
+## Performance Endpoints (Session 8)
+
+### GET /api/performance/team-members
+Fetch all team members (1000 members for performance testing).
+
+**Example:**
+```js
+const response = await fetch('/api/performance/team-members');
+const members = await response.json();
+console.log(members); // Array of 1000 team members
+```
+
+**Response:**
+Each member includes:
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "role": "Software Engineer",
+  "department": "Engineering",
+  "joinDate": "2020-05-15T00:00:00.000Z",
+  "avatar": "https://ui-avatars.com/api/...",
+  "phone": "+1-555-0123",
+  "location": "San Francisco, CA",
+  "bio": "Experienced software engineer...",
+  "skills": ["JavaScript", "React", "Node.js"],
+  "projects": [
+    {
+      "name": "Project Alpha",
+      "description": "Important project",
+      "status": "Active"
+    }
+  ],
+  "salary": 120000,
+  "experience": 5
+}
+```
+
+---
+
+### GET /api/performance/team-members/:id
+Fetch a single team member by ID from the large dataset.
+
+---
+
+### POST /api/performance/team-members
+Add a new team member to the performance dataset.
+
+---
+
+### DELETE /api/performance/team-members/:id
+Delete a team member from the performance dataset.
 
 ---
 
 ## React Query Examples
 
-### Query - Fetch all members
+### Query - Fetch all members (original)
 ```js
 import { useQuery } from '@tanstack/react-query';
 
@@ -138,6 +185,18 @@ function TeamList() {
 }
 ```
 
+### Query - Fetch performance dataset (Session 8)
+```js
+const { data, isLoading } = useQuery({
+  queryKey: ['performance-members'],
+  queryFn: async () => {
+    const response = await fetch('/api/performance/team-members');
+    if (!response.ok) throw new Error('Failed to fetch');
+    return response.json();
+  }
+});
+```
+
 ### Mutation - Add new member
 ```js
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -156,29 +215,14 @@ function AddMemberForm() {
       return response.json();
     },
     onSuccess: () => {
-      // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ['team-members'] });
     }
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    mutation.mutate({
-      name: 'John Doe',
-      role: 'Developer',
-      email: 'john@company.com',
-      department: 'Engineering'
-    });
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <button type="submit" disabled={mutation.isPending}>
-        {mutation.isPending ? 'Adding...' : 'Add Member'}
-      </button>
-      {mutation.isError && <div>Error: {mutation.error.message}</div>}
-      {mutation.isSuccess && <div>Member added successfully!</div>}
-    </form>
+    <button onClick={() => mutation.mutate({...})}>
+      Add Member
+    </button>
   );
 }
 ```
@@ -211,11 +255,14 @@ const deleteMutation = useMutation({
 
 ## Reset Data
 
-To reset the team members to the initial seed data:
-
+To reset the original team members:
 ```js
 localStorage.removeItem('react-academy-team-members');
-// Refresh the page
+```
+
+To reset the performance dataset:
+```js
+localStorage.removeItem('react-academy-performance-members');
 ```
 
 Or clear all localStorage:

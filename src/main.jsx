@@ -6,7 +6,7 @@ import './index.css'
 // Import MSW mock worker (only runs in development)
 async function enableMocking() {
   if (import.meta.env.DEV) {
-    const { startMockWorker } = await import('../session-6-final/mocks/browser.js');
+    const { startMockWorker } = await import('./mocks/browser.js');
     await startMockWorker();
   }
 }

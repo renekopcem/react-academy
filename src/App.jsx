@@ -6,6 +6,7 @@ import Session4App from "../session-4/session4App.jsx";
 import Session5App from "../session-5/session5App.jsx";
 import Session6App from "../session-6/session6App.jsx";
 import Session7App from "../session-7/session7App.jsx";
+import Session8App from "../session-8/session8App.jsx";
 import "./App.css";
 
 function App() {
@@ -60,6 +61,13 @@ function App() {
       description: "TanStack Router, React Router Comparison, Nested Routes, Data Preloading",
       duration: "45 min",
       component: Session7App
+    },
+    {
+      id: "session-8",
+      title: "Session 8: Performance Optimization",
+      description: "useMemo, React.memo, useCallback, Code Splitting, Lazy Loading",
+      duration: "45 min",
+      component: Session8App
     }
   ];
 
