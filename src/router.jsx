@@ -119,31 +119,179 @@ const RootComponent = () => {
 
 // Session Navigator Component
 const SessionNavigator = () => {
+  // Session icons mapping
+  const sessionIcons = {
+    1: '🎯',
+    2: '⚡',
+    3: '🔄',
+    4: '🌐',
+    5: '🎛️',
+    6: '📡',
+    7: '🗺️',
+    8: '⚡',
+  };
+
+  // Session difficulty levels
+  const sessionDifficulty = {
+    1: 'Beginner',
+    2: 'Beginner',
+    3: 'Intermediate',
+    4: 'Intermediate',
+    5: 'Intermediate',
+    6: 'Advanced',
+    7: 'Advanced',
+    8: 'Advanced',
+  };
+
+  const getDifficultyColor = difficulty => {
+    switch (difficulty) {
+      case 'Beginner':
+        return '#d1fae5';
+      case 'Intermediate':
+        return '#fed7aa';
+      case 'Advanced':
+        return '#fecaca';
+      default:
+        return '#f1f5f9';
+    }
+  };
+
+  const getDifficultyTextColor = difficulty => {
+    switch (difficulty) {
+      case 'Beginner':
+        return '#065f46';
+      case 'Intermediate':
+        return '#92400e';
+      case 'Advanced':
+        return '#991b1b';
+      default:
+        return '#475569';
+    }
+  };
+
   return (
     <div className="session-navigator">
       <header className="academy-header">
-        <h1>🚀 React Academy</h1>
-        <p>Learn React step by step through hands-on sessions</p>
+        <h1>React Academy</h1>
+        <p>
+          Master React through 8 comprehensive sessions with hands-on practice
+        </p>
+        <div
+          style={{
+            marginTop: '2rem',
+            display: 'flex',
+            gap: '1rem',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <span
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              padding: '0.5rem 1rem',
+              borderRadius: '20px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              fontSize: '0.9rem',
+              color: 'rgba(255, 255, 255, 0.9)',
+            }}
+          >
+            ✨ Interactive Learning
+          </span>
+          <span
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              padding: '0.5rem 1rem',
+              borderRadius: '20px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              fontSize: '0.9rem',
+              color: 'rgba(255, 255, 255, 0.9)',
+            }}
+          >
+            💡 Real-world Examples
+          </span>
+          <span
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              padding: '0.5rem 1rem',
+              borderRadius: '20px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              fontSize: '0.9rem',
+              color: 'rgba(255, 255, 255, 0.9)',
+            }}
+          >
+            🚀 Build Projects
+          </span>
+        </div>
       </header>
 
       <div className="sessions-grid">
         {sessions.map(session => (
           <div key={session.id} className="session-card">
-            <h3>{session.title}</h3>
+            <div className="session-number">Session {session.id}</div>
+            <div
+              style={{
+                fontSize: '3rem',
+                marginBottom: '1rem',
+                textAlign: 'center',
+              }}
+            >
+              {sessionIcons[session.id]}
+            </div>
+            <h3>{session.title.replace(/^Session \d+:\s*/, '')}</h3>
             <p>{session.description}</p>
             <div className="session-meta">
               <span className="duration">⏱️ {session.duration}</span>
+              <span
+                style={{
+                  fontSize: '0.8rem',
+                  padding: '0.3rem 0.8rem',
+                  borderRadius: '12px',
+                  background: getDifficultyColor(sessionDifficulty[session.id]),
+                  border: 'none',
+                  fontWeight: '600',
+                  color: getDifficultyTextColor(sessionDifficulty[session.id]),
+                }}
+              >
+                {sessionDifficulty[session.id]}
+              </span>
             </div>
             <Link
               to="/sessions/$id/theory"
               params={{ id: session.id }}
               className="start-session-btn"
             >
-              Start Session
+              Start Session →
             </Link>
           </div>
         ))}
       </div>
+
+      <footer className="homepage-footer">
+        <div className="footer-content">
+          <p
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: '600',
+              marginBottom: '1rem',
+            }}
+          >
+            Your React Learning Journey
+          </p>
+          <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.8 }}>
+            From fundamentals to advanced patterns - everything you need to
+            become a React expert
+          </p>
+          <div className="footer-stats">
+            <span>🎯 8 Complete Sessions</span>
+            <span>⏱️ 6 Hours of Content</span>
+            <span>💻 Hands-on Practice</span>
+            <span>🏆 Real Projects</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
