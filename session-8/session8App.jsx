@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import TeamApp from './teamApp.jsx';
 import Session8Theory from '../session-8-final/session8Theory.jsx';
 
-function Session8App() {
-  const [showPractice, setShowPractice] = useState(false);
-
-  if (showPractice) {
+function Session8App({ mode = 'theory' }) {
+  if (mode === 'practice') {
     return (
       <div className="session8-practice-mode">
         <nav className="session8-practice-nav">
-          <button onClick={() => setShowPractice(false)}>
+          <Link
+            to="/sessions/$id/theory"
+            params={{ id: '8' }}
+          >
             ← Back to Theory
-          </button>
+          </Link>
           <h2>Hands-on Practice: Performance Optimization</h2>
         </nav>
         <TeamApp />
@@ -19,7 +20,7 @@ function Session8App() {
     );
   }
 
-  return <Session8Theory onStartPractice={() => setShowPractice(true)} />;
+  return <Session8Theory sessionId="8" />;
 }
 
 export default Session8App;

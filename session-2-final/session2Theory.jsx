@@ -1,5 +1,7 @@
+import { Link } from '@tanstack/react-router';
+
 // Session 2 Theory Component - State & Events learning content
-function Session2Theory({ onStartPractice }) {
+function Session2Theory({ sessionId }) {
   return (
     <div className="session2-app">
       <header className="session-header">
@@ -191,12 +193,13 @@ function Session2Theory({ onStartPractice }) {
           <div className="practice-cta">
             <h3>Ready to make the Team Directory interactive?</h3>
             <p>Let's add a grid/list view toggle to see state in action!</p>
-            <button
+            <Link
+              to="/sessions/$id/practice"
+              params={{ id: sessionId }}
               className="start-practice-btn"
-              onClick={onStartPractice}
             >
               Start Building 🚀
-            </button>
+            </Link>
           </div>
         </div>
       </section>

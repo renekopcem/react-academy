@@ -1,4 +1,6 @@
-function Session4Theory({ onStartPractice }) {
+import { Link } from '@tanstack/react-router';
+
+function Session4Theory({ sessionId }) {
   return (
     <div className="session1-app">
       <header className="session-header">
@@ -138,12 +140,13 @@ function Session4Theory({ onStartPractice }) {
           <div className="practice-cta">
             <h3>Ready to see Context API in action?</h3>
             <p>Let's migrate our Team Directory from prop drilling to Context API!</p>
-            <button
+            <Link
+              to="/sessions/$id/practice"
+              params={{ id: sessionId }}
               className="start-practice-btn"
-              onClick={onStartPractice}
             >
               Start Building 🚀
-            </button>
+            </Link>
           </div>
         </div>
       </section>

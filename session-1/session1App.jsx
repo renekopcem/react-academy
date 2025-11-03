@@ -1,21 +1,20 @@
-import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import TeamApp from './teamApp.jsx';
 import Session1Theory from '../session-1-final/session1Theory.jsx';
 
 // Session 1 App - React fundamentals learning objectives and practice
-function Session1App() {
-  const [showPractice, setShowPractice] = useState(false);
-
-  if (showPractice) {
+function Session1App({ mode = 'theory' }) {
+  if (mode === 'practice') {
     return (
       <div className="practice-mode">
         <nav className="practice-nav">
-          <button
+          <Link
+            to="/sessions/$id/theory"
+            params={{ id: '1' }}
             className="back-to-theory-btn"
-            onClick={() => setShowPractice(false)}
           >
             ← Back to Theory
-          </button>
+          </Link>
           <h2>Hands-on Practice</h2>
         </nav>
         <TeamApp />
@@ -23,7 +22,7 @@ function Session1App() {
     );
   }
 
-  return <Session1Theory onStartPractice={() => setShowPractice(true)} />;
+  return <Session1Theory sessionId="1" />;
 }
 
 export default Session1App;

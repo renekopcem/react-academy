@@ -1,4 +1,6 @@
-function Session3Theory({ onStartPractice }) {
+import { Link } from '@tanstack/react-router';
+
+function Session3Theory({ sessionId }) {
   return (
     <div className="session3-app">
       <header className="session-header">
@@ -140,12 +142,13 @@ function Session3Theory({ onStartPractice }) {
           <div className="practice-cta">
             <h3>Ready to add search to our Team Directory?</h3>
             <p>Let's use useEffect to create a debounced search with proper cleanup!</p>
-            <button
+            <Link
+              to="/sessions/$id/practice"
+              params={{ id: sessionId }}
               className="start-practice-btn"
-              onClick={onStartPractice}
             >
               Start Building 🚀
-            </button>
+            </Link>
           </div>
         </div>
       </section>

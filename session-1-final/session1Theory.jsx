@@ -1,5 +1,7 @@
+import { Link } from '@tanstack/react-router';
+
 // Session 1 Theory Component - React fundamentals learning content
-function Session1Theory({ onStartPractice }) {
+function Session1Theory({ sessionId }) {
   return (
     <div className="session1-app">
       <header className="session-header">
@@ -96,12 +98,13 @@ function Session1Theory({ onStartPractice }) {
           <div className="practice-cta">
             <h3>Ready to build your first React app?</h3>
             <p>Let's create a Team Directory together using these concepts!</p>
-            <button
+            <Link
+              to="/sessions/$id/practice"
+              params={{ id: sessionId }}
               className="start-practice-btn"
-              onClick={onStartPractice}
             >
               Start Building 🚀
-            </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,4 +1,6 @@
-function Session8Theory({ onStartPractice }) {
+import { Link } from '@tanstack/react-router';
+
+function Session8Theory({ sessionId }) {
   return (
     <div className="session8-app">
       <header className="session-header">
@@ -207,9 +209,13 @@ function Session8Theory({ onStartPractice }) {
           <li>📦 Implement lazy loading for a heavy modal</li>
           <li>✨ See the dramatic performance improvement!</li>
         </ul>
-        <button className="start-practice-btn" onClick={onStartPractice}>
+        <Link
+          to="/sessions/$id/practice"
+          params={{ id: sessionId }}
+          className="start-practice-btn"
+        >
           Start Practice Session →
-        </button>
+        </Link>
       </section>
     </div>
   );

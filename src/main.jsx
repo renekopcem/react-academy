@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import { RouterProvider } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { router } from './router'
 import './styles/global.css'
 
 // Import MSW mock worker (only runs in development)
@@ -15,7 +17,8 @@ async function enableMocking() {
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-      <App />
+      <RouterProvider router={router} />
+      {import.meta.env.DEV && <TanStackRouterDevtools router={router} />}
     </React.StrictMode>
   )
 })

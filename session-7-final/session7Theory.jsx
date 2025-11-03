@@ -1,4 +1,6 @@
-function Session7Theory({ onStartPractice }) {
+import { Link } from '@tanstack/react-router';
+
+function Session7Theory({ sessionId }) {
   return (
     <div className="session7-app">
       <header className="session-header">
@@ -189,9 +191,17 @@ function Session7Theory({ onStartPractice }) {
           <li>✅ React Query DevTools for debugging</li>
           <li>✅ MSW (Mock Service Worker) for realistic API simulation</li>
         </ul>
-        <button className="cta-button" onClick={onStartPractice}>
+
+        <Link
+          to="/session-7-practice"
+          className="cta-button"
+        >
           Start Practice →
-        </button>
+        </Link>
+
+        <p style={{ marginTop: '1rem', fontSize: '0.9rem', opacity: 0.8 }}>
+          💡 <strong>Note:</strong> This practice runs at a standalone route so you can add your own RouterProvider without conflicts with the main app's routing!
+        </p>
       </section>
     </div>
   );

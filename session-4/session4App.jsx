@@ -1,20 +1,19 @@
-import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import TeamApp from './teamApp.jsx';
 import Session4Theory from '../session-4-final/session4Theory.jsx';
 
-function Session4App() {
-  const [showPractice, setShowPractice] = useState(false);
-
-  if (showPractice) {
+function Session4App({ mode = 'theory' }) {
+  if (mode === 'practice') {
     return (
       <div className="practice-mode">
         <nav className="practice-nav">
-          <button
+          <Link
+            to="/sessions/$id/theory"
+            params={{ id: '4' }}
             className="back-to-theory-btn"
-            onClick={() => setShowPractice(false)}
           >
             ← Back to Theory
-          </button>
+          </Link>
           <h2>Hands-on Practice</h2>
         </nav>
         <TeamApp />
@@ -22,7 +21,7 @@ function Session4App() {
     );
   }
 
-  return <Session4Theory onStartPractice={() => setShowPractice(true)} />;
+  return <Session4Theory sessionId="4" />;
 }
 
 export default Session4App;

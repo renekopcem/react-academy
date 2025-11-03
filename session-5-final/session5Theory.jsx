@@ -1,4 +1,6 @@
-function Session5Theory({ onStartPractice }) {
+import { Link } from '@tanstack/react-router';
+
+function Session5Theory({ sessionId }) {
   return (
     <div className="session5-app">
       <header className="session-header session5-header">
@@ -191,12 +193,13 @@ function Session5Theory({ onStartPractice }) {
           <div className="practice-cta">
             <h3>Ready to see useReducer in action?</h3>
             <p>Let's upgrade our Team Directory from useState to useReducer!</p>
-            <button
+            <Link
+              to="/sessions/$id/practice"
+              params={{ id: sessionId }}
               className="start-practice-btn"
-              onClick={onStartPractice}
             >
               Start Building 🚀
-            </button>
+            </Link>
           </div>
         </div>
       </section>

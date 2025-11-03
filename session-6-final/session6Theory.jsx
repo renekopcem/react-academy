@@ -1,4 +1,6 @@
-function Session6Theory({ onStartPractice }) {
+import { Link } from '@tanstack/react-router';
+
+function Session6Theory({ sessionId }) {
   return (
     <div className="session6-app">
       <header className="session-header session6-header">
@@ -211,12 +213,13 @@ function Session6Theory({ onStartPractice }) {
           <div className="practice-cta">
             <h3>Ready to build with React Query?</h3>
             <p>Let's create a Team Directory with real API calls!</p>
-            <button
+            <Link
+              to="/sessions/$id/practice"
+              params={{ id: sessionId }}
               className="start-practice-btn"
-              onClick={onStartPractice}
             >
               Start Building 🚀
-            </button>
+            </Link>
           </div>
         </div>
       </section>
