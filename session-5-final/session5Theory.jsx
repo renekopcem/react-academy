@@ -210,8 +210,8 @@ const value = {
             </div>
           </div>
 
-          <div className="practice-cta">
-            <h3>Ready to see useReducer in action?</h3>
+          <section className="practice-section">
+            <h2>Ready to see useReducer in action?</h2>
             <p>Let's upgrade our Team Directory from useState to useReducer!</p>
             <Link
               to="/sessions/$id/practice"
@@ -220,7 +220,7 @@ const value = {
             >
               Start Building 🚀
             </Link>
-          </div>
+          </section>
         </div>
       </section>
     </div>

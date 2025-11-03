@@ -150,8 +150,8 @@ function TeamMember({ memberId }) {
             </div>
           </div>
 
-          <div className="practice-cta">
-            <h3>Ready to see Context API in action?</h3>
+          <section className="practice-section">
+            <h2>Ready to see Context API in action?</h2>
             <p>
               Let's migrate our Team Directory from prop drilling to Context
               API!
@@ -163,7 +163,7 @@ function TeamMember({ memberId }) {
             >
               Start Building 🚀
             </Link>
-          </div>
+          </section>
         </div>
       </section>
     </div>

@@ -152,6 +152,7 @@ const SessionNavigator = () => {
 const SessionLayout = () => {
   const { id } = useParams({ strict: false });
   const session = sessions.find(s => s.id === id);
+  const isPractice = window.location.pathname.includes('/practice');
 
   if (!session) {
     return (
@@ -169,9 +170,23 @@ const SessionLayout = () => {
   return (
     <div className="session-container">
       <nav className="session-nav">
-        <Link to="/" className="back-btn">
-          ← Back to Sessions
-        </Link>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <Link to="/" className="back-btn">
+            ← Back to Sessions
+          </Link>
+          {isPractice && (
+            <>
+              <span style={{ color: 'rgba(255,255,255,0.5)' }}>|</span>
+              <Link
+                to="/sessions/$id/theory"
+                params={{ id }}
+                className="back-btn"
+              >
+                ← Back to Theory
+              </Link>
+            </>
+          )}
+        </div>
         <h2>{session.title}</h2>
       </nav>
       <Outlet />

@@ -4,52 +4,41 @@ import TeamDirectory from './components/teamDirectory.jsx';
 // Main content component that uses context
 function TeamAppContent() {
   return (
-    <div className="team-app session5-practice">
-      <header className="app-header">
-        <h1>Team Directory</h1>
-        <p>Now powered by useReducer + Context - watch actions dispatch in real-time!</p>
+    <div className="practice-mode session5-practice">
+      <header className="practice-header">
+        <h1>Team Directory with useReducer</h1>
+        <p>
+          Building our team directory with useReducer - student practice version
+        </p>
       </header>
 
-      <div className="app-layout">
-        {/* Main content */}
-        <main className="main-content">
-          <TeamDirectory />
-        </main>
+      <div className="practice-content">
+        <TeamDirectory />
       </div>
 
-      <footer className="app-footer session5-footer">
+      <footer className="practice-footer">
         <div className="practice-notes">
-          <h3>🎯 useReducer + Context in Action:</h3>
-          <div className="reducer-explanation">
-            <div className="reducer-info">
-              <h4>🔄 Single Dispatch Function:</h4>
-              <code>const &#123; dispatch &#125; = useTeam();</code>
-              <p>Instead of multiple setState functions, we have one dispatch function!</p>
-            </div>
-            <div className="reducer-info">
-              <h4>📦 Action-Based Updates:</h4>
-              <code>dispatch(&#123; type: 'SELECT_MEMBER', payload: member &#125;);</code>
-              <p>All state updates are handled by the reducer function</p>
-            </div>
-            <div className="reducer-info">
-              <h4>📊 Action Log:</h4>
-              <code>actionLog: state.actionLog</code>
-              <p>The reducer tracks all dispatched actions for debugging</p>
-            </div>
-          </div>
-
-          <ul className="exercise-list">
-            <li>🔍 Search for team members - see SET_SEARCH actions dispatch</li>
-            <li>👁️ Toggle view mode - see TOGGLE_VIEW actions dispatch</li>
-            <li>🎯 Click team members - see SELECT_MEMBER actions dispatch</li>
-            <li>❌ Close selected member panel - see CLEAR_SELECTION dispatch</li>
-            <li>🔄 Click "Reset Filters" - see RESET_FILTERS dispatch</li>
-            <li>📊 Watch the Action Log panel show all dispatched actions!</li>
+          <h3>Practice Exercises</h3>
+          <ul>
+            <li>Search for team members and watch state updates</li>
+            <li>Toggle view mode using useReducer actions</li>
+            <li>Open console to see reducer actions logged</li>
+            <li>
+              Compare with Session 4 - same features, now with useReducer!
+            </li>
+            <li>
+              Notice how state logic is centralized in the reducer function
+            </li>
           </ul>
 
-          <div className="concept-highlight session5-highlight">
-            <h4>🧠 Key Learning:</h4>
-            <p>Compare this to Session 4! Same features, but now all state updates go through a single reducer function. This makes the code more predictable, easier to debug (see the action log!), and easier to test. When state logic gets complex, useReducer keeps everything organized!</p>
+          <div className="concept-highlight">
+            <h4>Key Concept</h4>
+            <p>
+              useReducer provides a more structured way to manage complex state.
+              Instead of multiple useState calls, all state updates go through a
+              single reducer function. This makes the code more predictable and
+              easier to debug!
+            </p>
           </div>
         </div>
       </footer>

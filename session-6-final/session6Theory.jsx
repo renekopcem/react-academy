@@ -216,8 +216,8 @@ queryClient.invalidateQueries({
             </div>
           </div>
 
-          <div className="practice-cta">
-            <h3>Ready to build with React Query?</h3>
+          <section className="practice-section">
+            <h2>Ready to build with React Query?</h2>
             <p>Let's create a Team Directory with real API calls!</p>
             <Link
               to="/sessions/$id/practice"
@@ -226,7 +226,7 @@ queryClient.invalidateQueries({
             >
               Start Building 🚀
             </Link>
-          </div>
+          </section>
         </div>
       </section>
     </div>

@@ -148,8 +148,8 @@ Button shows "ON"`}</CodeBlock>
             </div>
           </div>
 
-          <div className="practice-cta">
-            <h3>Ready to make the Team Directory interactive?</h3>
+          <section className="practice-section">
+            <h2>Ready to make the Team Directory interactive?</h2>
             <p>Let's add a grid/list view toggle to see state in action!</p>
             <Link
               to="/sessions/$id/practice"
@@ -158,7 +158,7 @@ Button shows "ON"`}</CodeBlock>
             >
               Start Building 🚀
             </Link>
-          </div>
+          </section>
         </div>
       </section>
     </div>

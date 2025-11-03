@@ -111,8 +111,8 @@ function Session1Theory({ sessionId }) {
             </div>
           </div>
 
-          <div className="practice-cta">
-            <h3>Ready to build your first React app?</h3>
+          <section className="practice-section">
+            <h2>Ready to build your first React app?</h2>
             <p>Let's create a Team Directory together using these concepts!</p>
             <Link
               to="/sessions/$id/practice"
@@ -121,7 +121,7 @@ function Session1Theory({ sessionId }) {
             >
               Start Building 🚀
             </Link>
-          </div>
+          </section>
         </div>
       </section>
     </div>

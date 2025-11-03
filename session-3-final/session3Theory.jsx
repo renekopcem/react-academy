@@ -161,8 +161,8 @@ function MyComponent() {
             </div>
           </div>
 
-          <div className="practice-cta">
-            <h3>Ready to add search to our Team Directory?</h3>
+          <section className="practice-section">
+            <h2>Ready to add search to our Team Directory?</h2>
             <p>
               Let's use useEffect to create a debounced search with proper
               cleanup!
@@ -174,7 +174,7 @@ function MyComponent() {
             >
               Start Building 🚀
             </Link>
-          </div>
+          </section>
         </div>
       </section>
     </div>
