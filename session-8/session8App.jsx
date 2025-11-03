@@ -1,4 +1,3 @@
-import { Link } from '@tanstack/react-router';
 import TeamApp from './teamApp.jsx';
 import Session8Theory from '../session-8-final/session8Theory.jsx';
 

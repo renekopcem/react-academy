@@ -13,7 +13,11 @@ function TeamDirectory() {
   const queryClient = useQueryClient();
 
   // Fetch performance dataset (1000 members)
-  const { data: members, isLoading, error } = useQuery({
+  const {
+    data: members,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['performance-members'],
     queryFn: async () => {
       const response = await fetch('/api/performance/team-members');
@@ -23,11 +27,14 @@ function TeamDirectory() {
   });
 
   // Delete mutation
-  const deleteMutation = useMutation({
-    mutationFn: async (memberId) => {
-      const response = await fetch(`/api/performance/team-members/${memberId}`, {
-        method: 'DELETE',
-      });
+  const { mutate: deleteMutation } = useMutation({
+    mutationFn: async memberId => {
+      const response = await fetch(
+        `/api/performance/team-members/${memberId}`,
+        {
+          method: 'DELETE',
+        }
+      );
       if (!response.ok) throw new Error('Failed to delete member');
       return response.json();
     },
@@ -40,14 +47,14 @@ function TeamDirectory() {
   // This prevents child components from re-rendering unnecessarily
   // The function reference stays the same unless deleteMutation changes
   const handleDelete = useCallback(
-    (id) => {
-      deleteMutation.mutate(id);
+    id => {
+      deleteMutation(id);
     },
     [deleteMutation]
   );
 
   // ✅ OPTIMIZATION #2: useCallback for stable function reference
-  const handleViewDetails = useCallback((member) => {
+  const handleViewDetails = useCallback(member => {
     setSelectedMember(member);
   }, []);
 
@@ -57,7 +64,7 @@ function TeamDirectory() {
   const filteredMembers = useMemo(() => {
     if (!members) return [];
 
-    return members.filter((member) => {
+    return members.filter(member => {
       const searchText = filterText.toLowerCase();
       return (
         member.name.toLowerCase().includes(searchText) ||
@@ -90,7 +97,8 @@ function TeamDirectory() {
       <div className="team-header">
         <h2>Our Team ({members.length} members)</h2>
         <p className="team-description">
-          Optimized version with React.memo, useCallback, useMemo, and lazy loading! ⚡
+          Optimized version with React.memo, useCallback, useMemo, and lazy
+          loading! ⚡
         </p>
       </div>
 
@@ -100,7 +108,7 @@ function TeamDirectory() {
           type="text"
           placeholder="Filter by name, email, role, or department..."
           value={filterText}
-          onChange={(e) => setFilterText(e.target.value)}
+          onChange={e => setFilterText(e.target.value)}
           className="filter-input"
         />
         <span className="filter-results">
