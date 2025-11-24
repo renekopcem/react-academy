@@ -16,6 +16,7 @@ import Session5App from '../session-5/session5App.jsx';
 import Session6App from '../session-6/session6App.jsx';
 import Session7App from '../session-7/session7App.jsx';
 import Session8App from '../session-8/session8App.jsx';
+import Session9App from '../session-9/session9App.jsx';
 
 // Import Session 7 base practice (students will add routing here)
 import Session7BaseTeamApp from '../session-7/teamApp.jsx';
@@ -83,6 +84,14 @@ export const sessions = [
     duration: '45 min',
     component: Session8App,
   },
+  {
+    id: '9',
+    title: 'Session 9: Testing React Applications',
+    description:
+      'Vitest, React Testing Library, MSW, Integration Testing, Browser Mode',
+    duration: '45 min',
+    component: Session9App,
+  },
 ];
 
 // NotFound component
@@ -129,6 +138,7 @@ const SessionNavigator = () => {
     6: '📡',
     7: '🗺️',
     8: '⚡',
+    9: '🧪',
   };
 
   // Session difficulty levels
@@ -141,6 +151,7 @@ const SessionNavigator = () => {
     6: 'Advanced',
     7: 'Advanced',
     8: 'Advanced',
+    9: 'Advanced',
   };
 
   const getDifficultyColor = difficulty => {
@@ -285,7 +296,7 @@ const SessionNavigator = () => {
             become a React expert
           </p>
           <div className="footer-stats">
-            <span>🎯 8 Complete Sessions</span>
+            <span>🎯 9 Complete Sessions</span>
             <span>⏱️ 6 Hours of Content</span>
             <span>💻 Hands-on Practice</span>
             <span>🏆 Real Projects</span>
