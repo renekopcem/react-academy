@@ -17,6 +17,7 @@ import Session6App from '../session-6/session6App.jsx';
 import Session7App from '../session-7/session7App.jsx';
 import Session8App from '../session-8/session8App.jsx';
 import Session9App from '../session-9/session9App.jsx';
+import Session10App from '../session-10/session10App.jsx';
 
 // Import Session 7 base practice (students will add routing here)
 import Session7BaseTeamApp from '../session-7/teamApp.jsx';
@@ -92,6 +93,14 @@ export const sessions = [
     duration: '45 min',
     component: Session9App,
   },
+  {
+    id: '10',
+    title: 'Session 10: Modern React Patterns',
+    description:
+      'React 19 Hooks, Actions, Error Handling, Server Components Overview',
+    duration: '45 min',
+    component: Session10App,
+  },
 ];
 
 // NotFound component
@@ -139,6 +148,7 @@ const SessionNavigator = () => {
     7: '🗺️',
     8: '⚡',
     9: '🧪',
+    10: '🚀',
   };
 
   // Session difficulty levels
@@ -152,6 +162,7 @@ const SessionNavigator = () => {
     7: 'Advanced',
     8: 'Advanced',
     9: 'Advanced',
+    10: 'Advanced',
   };
 
   const getDifficultyColor = difficulty => {
@@ -185,7 +196,7 @@ const SessionNavigator = () => {
       <header className="academy-header">
         <h1>React Academy</h1>
         <p>
-          Master React through 8 comprehensive sessions with hands-on practice
+          Master React through 10 comprehensive sessions with hands-on practice
         </p>
         <div
           style={{
@@ -296,8 +307,8 @@ const SessionNavigator = () => {
             become a React expert
           </p>
           <div className="footer-stats">
-            <span>🎯 9 Complete Sessions</span>
-            <span>⏱️ 6 Hours of Content</span>
+            <span>🎯 10 Complete Sessions</span>
+            <span>⏱️ 7.5 Hours of Content</span>
             <span>💻 Hands-on Practice</span>
             <span>🏆 Real Projects</span>
           </div>
